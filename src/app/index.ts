@@ -10,6 +10,10 @@ module app {
         'ngSanitize',
         'ngResource',
         'ui.materialize',
+        'firebase',
+
+        'app.utils',
+        'app.services',
 
         'app.home',
         'app.components',
@@ -18,7 +22,11 @@ module app {
         'ui.router'
     ]);
 
+    angular.module('app.utils', []);
+    angular.module('app.services', []);
+
     angular.module('app.home', []);
+
     angular.module('app.components', []);
     angular.module('app.directives', []);
 }

@@ -6,8 +6,8 @@ module app.home {
 		public isAngularRunning: boolean;
 
 		/* @ngInject */
-		constructor ($scope: ng.IScope) {
-			this.isAngularRunning = true;
+		constructor (private leaderboardService: app.services.ILeaderboardService) {
+			leaderboardService.getByDay('Monday');
 		}
 	}
 

@@ -1,0 +1,61 @@
+{
+	"leaderboards": [
+		{
+			"day": "Monday",
+			"leaderboard": [
+				{
+					"id": "dc03296d-ef78-4f7f-8a2c-f76d467da1b5",
+					"name": "Jono",
+					"score": "420"
+				},
+				{
+					"id": "cd1f7df9-8ab2-4961-85a7-0f1c6861d008",
+					"name": "Bob",
+					"score": "400"
+				},
+				{
+					"id": "afec7937-b743-4e15-8d60-7dc8822a9edd",
+					"name": "Equip",
+					"score": "1"
+				},
+				{
+					"id": "0cff9505-d9fd-4b73-bb1c-ebbc4ea7c659",
+					"name": "Kylie",
+					"score": "69"
+				}
+			]
+
+		}
+	],
+
+	"users": [
+		{
+			"id": "dc03296d-ef78-4f7f-8a2c-f76d467da1b5",
+			"name": "Jono",
+			"phone": "",
+			"email": "",
+			"company": ""
+		},
+		{
+			"id": "cd1f7df9-8ab2-4961-85a7-0f1c6861d008",
+			"name": "Bob",
+			"phone": "",
+			"email": "",
+			"company": ""
+		},
+		{
+			"id": "afec7937-b743-4e15-8d60-7dc8822a9edd",
+			"name": "Equip",
+			"phone": "",
+			"email": "",
+			"company": ""
+		},
+		{
+			"id": "0cff9505-d9fd-4b73-bb1c-ebbc4ea7c659",
+			"name": "Kylie",
+			"phone": "",
+			"email": "",
+			"company": ""
+		}
+	]
+}
