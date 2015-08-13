@@ -12,10 +12,15 @@ module app {
         'ui.materialize',
         'firebase',
 
+        // services
         'app.utils',
         'app.services',
 
+        // controllers
         'app.home',
+        'app.admin',
+
+        // components
         'app.components',
         'app.directives',
 
@@ -26,6 +31,8 @@ module app {
     angular.module('app.services', []);
 
     angular.module('app.home', []);
+
+    angular.module('app.admin', []);
 
     angular.module('app.components', []);
     angular.module('app.directives', []);

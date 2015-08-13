@@ -1,0 +1,41 @@
+<div class="container">
+	 <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6 m12" >
+          <i class="material-icons prefix">account_circle</i>
+          <input id="name" type="text" class="validate" ng-model="vm.user.name" />
+          <label for="name">Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 m12" >
+          <i class="material-icons prefix">class</i>
+          <input id="company" type="text" class="validate" ng-model="vm.user.company" />
+          <label for="company">Company</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 m12">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="text" class="validate" ng-model="vm.user.email" />
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 m12">
+          <i class="material-icons prefix">phone</i>
+          <input id="phone" type="text" class="validate" ng-model="vm.user.phone" />
+          <label for="phone">Phone</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6 m12">
+          <button class="btn waves-effect waves-light" type="submit" name="action" ng-click="vm.save()">Submit
+            <i class="material-icons">send</i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

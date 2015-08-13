@@ -2,12 +2,17 @@ module app.utils {
 	'use strict';
 
 	export interface IEndpointService {
-		getLeaderboards(): any;
+		getLeaderboards(): Firebase;
+		getUsers(): Firebase;
 	}
 
 	class EndpointService implements IEndpointService {
-		public getLeaderboards(): any {
+		public getLeaderboards(): Firebase {
 			return new Firebase('https://intergen-scoreboard.firebaseio.com/leaderboards');
+		}
+
+		public getUsers(): Firebase {
+			return new Firebase('https://intergen-scoreboard.firebaseio.com/users');
 		}
 	}
 		angular
