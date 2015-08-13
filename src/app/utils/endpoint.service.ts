@@ -2,18 +2,24 @@ module app.utils {
 	'use strict';
 
 	export interface IEndpointService {
-		getLeaderboards(): Firebase;
+		getLeaderboard(): Firebase;
 		getUsers(): Firebase;
 	}
 
 	class EndpointService implements IEndpointService {
 
-		public getLeaderboards(): Firebase {
-			return new Firebase('https://intergen-scoreboard.firebaseio.com/leaderboard');
+		private baseUrl: string = 'https://intergen-scoreboard.firebaseio.com';
+
+		public getLeaderboard(): Firebase {
+			return this.buildFirebase('/leaderboard');
 		}
 
 		public getUsers(): Firebase {
-			return new Firebase('https://intergen-scoreboard.firebaseio.com/users');
+			return this.buildFirebase('/users');
+		}
+
+		private buildFirebase(path: string): Firebase {
+			return new Firebase(this.baseUrl + path);
 		}
 	}
 	

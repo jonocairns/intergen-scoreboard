@@ -8,5 +8,5 @@ module app {
 	}
 
 	angular.module('app')
-		.filter('reverse', reverse);
+		.filter('reverse', reverse)
 }

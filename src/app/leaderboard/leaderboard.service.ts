@@ -3,6 +3,7 @@ module app.services {
 
 	export interface ILeaderboardService {
 		get(): AngularFireArray;
+		getByDay(day: string): AngularFireArray;
 	} 
 
 	class LeaderboardService implements ILeaderboardService {
@@ -11,8 +12,17 @@ module app.services {
 		}
 
 		public get(): AngularFireArray {
-			var ref = this.endpointService.getLeaderboards();
+			var ref = this.endpointService.getLeaderboard();
 			var query = ref.orderByChild('score');
+
+			return this.$firebaseArray(query);
+		}
+
+		public getByDay(day: string): AngularFireArray {
+			if (!_.isString(day)) { throw new Error('day must be a string.'); }
+
+			var ref = this.endpointService.getLeaderboard();
+			var query = ref.orderByChild('conference_day').equalTo(day);
 
 			return this.$firebaseArray(query);
 		}
