@@ -13,7 +13,7 @@ module app.services {
 		public getByDay(day: string): Array<any> {
 			var ref = this.endpointService.getLeaderboards();
 			var blah = this.$firebaseArray(ref);
-
+			
 			console.log(blah);
 			return [];
 		}

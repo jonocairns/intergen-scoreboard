@@ -7,6 +7,10 @@ module app {
             url: '/',
             templateUrl: 'app/home/home.html',
             controller: 'app.home.HomeController'
+        }).$stateProvider.state('add', {
+            url: '/add',
+            templateUrl: 'app/admin/add.html',
+            controller: 'app.admin.AddEntryController'
         });
 
         $urlRouterProvider.otherwise('/');
