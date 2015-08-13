@@ -21,6 +21,7 @@ module app {
         'app.admin',
 
         // components
+        'app.leaderboard',
         'app.components',
         'app.directives',
 
@@ -31,6 +32,7 @@ module app {
     angular.module('app.services', []);
 
     angular.module('app.home', []);
+    angular.module('app.leaderboard', []);
 
     angular.module('app.admin', []);
 

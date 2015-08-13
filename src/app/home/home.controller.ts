@@ -3,12 +3,8 @@ module app.home {
 
 	export class HomeController {
 
-		public isAngularRunning: boolean;
-
 		/* @ngInject */
-		constructor (private leaderboardService: app.services.ILeaderboardService) {
-			leaderboardService.getByDay('Monday');
-		}
+		constructor () { }
 	}
 
 	angular

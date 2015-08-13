@@ -7,15 +7,17 @@ module app.utils {
 	}
 
 	class EndpointService implements IEndpointService {
+
 		public getLeaderboards(): Firebase {
-			return new Firebase('https://intergen-scoreboard.firebaseio.com/leaderboards');
+			return new Firebase('https://intergen-scoreboard.firebaseio.com/leaderboard');
 		}
 
 		public getUsers(): Firebase {
 			return new Firebase('https://intergen-scoreboard.firebaseio.com/users');
 		}
 	}
-		angular
+	
+	angular
 		.module('app.utils')
 		.service('endpointService', EndpointService);
 }
