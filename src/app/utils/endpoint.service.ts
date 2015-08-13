@@ -7,10 +7,11 @@ module app.utils {
 
 	class EndpointService implements IEndpointService {
 		public getLeaderboards(): any {
-			return new Firebase('https://intergen-scoreboard.firebaseio.com/leaderboards');
+			return new Firebase('https://intergen-scoreboard.firebaseio.com/leaderboard');
 		}
 	}
-		angular
+	
+	angular
 		.module('app.utils')
 		.service('endpointService', EndpointService);
 }

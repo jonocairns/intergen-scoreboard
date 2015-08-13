@@ -1,30 +1,31 @@
 {
-	"leaderboards": [
+	"leaderboard": [
 		{
-			"day": "Monday",
-			"leaderboard": [
-				{
-					"id": "dc03296d-ef78-4f7f-8a2c-f76d467da1b5",
-					"name": "Jono",
-					"score": "420"
-				},
-				{
-					"id": "cd1f7df9-8ab2-4961-85a7-0f1c6861d008",
-					"name": "Bob",
-					"score": "400"
-				},
-				{
-					"id": "afec7937-b743-4e15-8d60-7dc8822a9edd",
-					"name": "Equip",
-					"score": "1"
-				},
-				{
-					"id": "0cff9505-d9fd-4b73-bb1c-ebbc4ea7c659",
-					"name": "Kylie",
-					"score": "69"
-				}
-			]
+			"id": "dc03296d-ef78-4f7f-8a2c-f76d467da1b5",
+			"name": "Jono",
+			"score": "420",
+			"date": "2015-08-13T08:18:53.286Z"
+		},
 
+		{
+			"id": "cd1f7df9-8ab2-4961-85a7-0f1c6861d008",
+			"name": "Bob",
+			"score": "124",
+			"date": "2015-08-13T08:18:53.286Z"
+		},
+
+		{
+			"id": "afec7937-b743-4e15-8d60-7dc8822a9edd",
+			"name": "Aquib",
+			"score": "400",
+			"date": "2015-08-13T08:18:53.286Z"
+		},
+
+		{
+			"id": "0cff9505-d9fd-4b73-bb1c-ebbc4ea7c659",
+			"name": "Kylie",
+			"score": "419",
+			"date": "2015-08-13T08:18:53.286Z"
 		}
 	],
 
@@ -45,7 +46,7 @@
 		},
 		{
 			"id": "afec7937-b743-4e15-8d60-7dc8822a9edd",
-			"name": "Equip",
+			"name": "Aquib",
 			"phone": "",
 			"email": "",
 			"company": ""

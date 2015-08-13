@@ -2,7 +2,7 @@ module app.services {
 	'use strict';
 
 	export interface ILeaderboardService {
-		getByDay(day: string): Array<any>;
+		get(): AngularFireArray;
 	} 
 
 	class LeaderboardService implements ILeaderboardService {
@@ -10,16 +10,15 @@ module app.services {
 		constructor(private endpointService: app.utils.IEndpointService, private $firebaseArray: any) {
 		}
 
-		public getByDay(day: string): Array<any> {
+		public get(): AngularFireArray {
 			var ref = this.endpointService.getLeaderboards();
-			var blah = this.$firebaseArray(ref);
-			
-			console.log(blah);
-			return [];
+			var query = ref.orderByChild('score');
+
+			return this.$firebaseArray(query);
 		}
 	}
 
-		angular
+	angular
 		.module('app.services')
 		.service('leaderboardService', LeaderboardService);
 }
