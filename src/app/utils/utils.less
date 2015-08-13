@@ -1,0 +1,26 @@
+// Colours
+@intergen-yellow: #FFD300;
+
+// Screen widths
+@screen-phone: 768px;
+@screen-tablet: 922px;
+@screen-desktop: 1200px;
+
+// Responsive Mixins
+.media-phone(@rules) {
+	@media screen and (max-width: @screen-phone) {
+		@rules();
+	}
+}
+
+.media-tablet(@rules) {
+	@media screen and (min-width: @screen-tablet) and (max-width: @screen-tablet) {
+		@rules();
+	}
+}
+
+.media-desktop(@rules) {
+	@media screen and (max-width: @screen-tablet) and (min-width: @screen-desktop) {
+		@rules();
+	}
+}

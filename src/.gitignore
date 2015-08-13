@@ -1,0 +1,3 @@
+*.js
+!/vendor/*.js
+!*.spec.js
