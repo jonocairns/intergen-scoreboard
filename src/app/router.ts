@@ -18,6 +18,13 @@ module app {
 
         });
         
+        $stateProvider.state('add-score', {
+            url: '/add-score',
+            templateUrl: 'app/admin/add-score.html',
+            controller: 'addScoreController',
+            controllerAs: 'vm'
+        });
+
         $stateProvider.state('leaderboard', {
             url: '/leaderboard',
             templateUrl: 'app/leaderboard/leaderboard.html',
