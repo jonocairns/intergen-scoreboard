@@ -20,7 +20,7 @@ module app.utils {
 		}
 
 		public get(): Firebase {
-			return new Firebase(this.baseUrl)
+			return new Firebase(this.baseUrl);
 		}
 
 		private buildFirebase(path: string): Firebase {
