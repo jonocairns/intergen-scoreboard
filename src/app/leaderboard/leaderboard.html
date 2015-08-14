@@ -1,5 +1,23 @@
 <div class="container">
-	<div class="section">
+	<div class="section" ng-show="vm.dataLoading">
+		<div class="col s12 m4 center loading-spinner">
+			<div class="preloader-wrapper big active">
+			    <div class="spinner-layer spinner-yellow-only">
+			        <div class="circle-clipper left">
+			          	<div class="circle"></div>
+			        </div>
+			        <div class="gap-patch">
+			          	<div class="circle"></div>
+			        </div>
+			        <div class="circle-clipper right">
+			          	<div class="circle"></div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section" ng-show="!vm.dataLoading">
 		<table class="striped">
 			<thead>
 				<tr>
@@ -10,7 +28,7 @@
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="entry in vm.leaderboard | reverse">
+				<tr ng-repeat="entry in vm.leaderboard | score">
 					<td><pre>{{$index + 1}}</pre></td>
 					<td ng-bind="entry.name"></td>
 					<td ng-bind="entry.score"></td>

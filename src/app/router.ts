@@ -19,10 +19,16 @@ module app {
         });
         
         $stateProvider.state('leaderboard', {
-            url: '/leaderboard',
+            url: '/leaderboard{day:(?:/[^/]+)?}',
             templateUrl: 'app/leaderboard/leaderboard.html',
             controller: 'leaderboardController',
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            resolve: {
+                day: ($stateParams: any) => {
+                    console.log($stateParams.day);
+                    return 'Monday';
+                }
+            }
         });
 
         $urlRouterProvider.otherwise('/');

@@ -3,10 +3,17 @@ module app.leaderboard {
 
 	class LeaderboardController {
 		public leaderboard: AngularFireArray;
+		public dataLoading: boolean = true;
 
 		/* @ngInject */
-		constructor(private leaderboardService: app.services.ILeaderboardService) {
-			this.leaderboard = leaderboardService.getByDay('monday');
+		constructor(private leaderboardService: app.services.ILeaderboardService, day: string) {
+			this.leaderboard = leaderboardService.getByDay('Friday');
+			
+			console.log(day);
+
+			this.leaderboard.$loaded(() => {
+				this.dataLoading = false;
+			});
 		}
 
 	}

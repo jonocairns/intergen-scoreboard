@@ -5,7 +5,7 @@
 			"name": "Jono",
 			"score": "420",
 			"date": "2015-08-13T08:18:53.286Z",
-			"conference_day": "monday"
+			"conferenceDay": "monday"
 		},
 
 		{
@@ -13,7 +13,7 @@
 			"name": "Bob",
 			"score": "124",
 			"date": "2015-08-13T08:18:53.286Z",
-			"conference_day": "monday"
+			"conferenceDay": "monday"
 		},
 
 		{
@@ -21,7 +21,7 @@
 			"name": "Aquib",
 			"score": "400",
 			"date": "2015-08-13T08:18:53.286Z",
-			"conference_day": "tuesday"
+			"conferenceDay": "tuesday"
 		},
 
 		{
@@ -29,7 +29,7 @@
 			"name": "Kylie",
 			"score": "419",
 			"date": "2015-08-13T08:18:53.286Z",
-			"conference_day": "wednesday"
+			"conferenceDay": "wednesday"
 		}
 	],
 

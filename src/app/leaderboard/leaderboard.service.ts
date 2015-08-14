@@ -22,7 +22,7 @@ module app.services {
 			if (!_.isString(day)) { throw new Error('day must be a string.'); }
 
 			var ref = this.endpointService.getLeaderboard();
-			var query = ref.orderByChild('conference_day').equalTo(day);
+			var query = ref.orderByChild('conferenceDay').equalTo(day);
 
 			return this.$firebaseArray(query);
 		}
