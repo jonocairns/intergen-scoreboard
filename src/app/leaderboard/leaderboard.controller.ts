@@ -7,9 +7,7 @@ module app.leaderboard {
 
 		/* @ngInject */
 		constructor(private leaderboardService: app.services.ILeaderboardService, day: string) {
-			this.leaderboard = leaderboardService.getByDay('Friday');
-			
-			console.log(day);
+			this.leaderboard = leaderboardService.getByDay(day);
 
 			this.leaderboard.$loaded(() => {
 				this.dataLoading = false;

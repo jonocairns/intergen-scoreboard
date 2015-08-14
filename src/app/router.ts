@@ -32,8 +32,14 @@ module app {
             controllerAs: 'vm',
             resolve: {
                 day: ($stateParams: any) => {
-                    console.log($stateParams.day);
-                    return 'Monday';
+                    var day = $stateParams.day;
+                    day = _.trim(day, '/');
+
+                    if(day.length > 0) {
+                        return day;
+                    }
+
+                    return moment().format('dddd');
                 }
             }
         });
