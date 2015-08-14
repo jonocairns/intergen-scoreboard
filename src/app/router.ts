@@ -32,6 +32,13 @@ module app {
             controllerAs: 'vm'
         });
 
+        $stateProvider.state('login', {
+            url: '/login',
+            templateUrl: 'app/admin/login.html',
+            controller: 'loginController',
+            controllerAs: 'vm'
+        });
+
         $urlRouterProvider.otherwise('/');
 	}
 

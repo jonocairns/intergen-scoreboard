@@ -3,6 +3,7 @@ module app.services {
 
 	export interface IUserService {
 		save(user: app.admin.User): void;
+		login(email: string, password: string): void;
 	} 
 
 	class UserService implements IUserService {
@@ -15,6 +16,15 @@ module app.services {
 			var users = this.$firebaseArray(ref);
 			
 			users.$add(user);
+		}
+
+		public login(email: string, password: string): void {
+			var ref = this.endpointService.get();
+
+			ref.authWithPassword({ email: email, password: password }, (err: any, authData: any) => {
+				console.log(err);
+				console.log(authData);
+			});
 		}
 	}
 
