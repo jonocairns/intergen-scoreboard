@@ -26,10 +26,22 @@ module app {
         });
 
         $stateProvider.state('leaderboard', {
-            url: '/leaderboard',
+            url: '/leaderboard{day:(?:/[^/]+)?}',
             templateUrl: 'app/leaderboard/leaderboard.html',
             controller: 'leaderboardController',
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            resolve: {
+                day: ($stateParams: any) => {
+                    var day = $stateParams.day;
+                    day = _.trim(day, '/');
+
+                    if(day.length > 0) {
+                        return day;
+                    }
+
+                    return moment().format('dddd');
+                }
+            }
         });
 
         $stateProvider.state('login', {
