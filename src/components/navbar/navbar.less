@@ -1,20 +1,28 @@
 nav {
-	background-color: #111111;
-	color: white;
+	background-color: white;
+	color: #111;
 
 	a.brand-logo {
+		color: #111;
 		font-size: 1.3em;
 	}
 
 	ul.right {
-		a:hover {
-			background-color: #333333;
+		a {
+			color: #111;
+
+			&:hover {
+				color: white;
+				background-color: @halo-blue;
+			}
 		}
 	}
 
-	
+	.media-full-screen({
+		display: none;
+	});
 }
 
 .button-collapse {
-  color: white;
+  color: #111;
 }
