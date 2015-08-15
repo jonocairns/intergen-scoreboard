@@ -3,7 +3,7 @@ module app.admin {
 
 	export class AddScoreController {
 
-		public score: number;
+		public score: string;
 		public name: string;
 
 		/* @ngInject */
@@ -11,9 +11,17 @@ module app.admin {
 		}
 
 		public save() {
-			var payload = new app.leaderboard.Leaderboard(this.score, app.utils.Guid.new().value, this.name, new Date(), moment().format('dddd'));
+			var score = parseInt(this.score, 10);
+			var payload = new app.leaderboard.Leaderboard(score, app.utils.Guid.new().value, this.name, new Date(), moment().format('dddd'));
 
-			this.scoreService.add(payload);
+			this.scoreService.add(payload, () => {
+				this.clear();
+			});
+		}
+
+		public clear() {
+			this.name = '';
+			this.score = '';
 		}
 	}
 
@@ -21,4 +29,3 @@ module app.admin {
 		.module('app.admin')
 		.controller('addScoreController', AddScoreController);
 }
-

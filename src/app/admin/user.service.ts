@@ -2,7 +2,7 @@ module app.services {
 	'use strict';
 
 	export interface IUserService {
-		save(user: app.admin.User): void;
+		save(user: app.admin.User, successAction: Function): void;
 		login(email: string, password: string): void;
 	} 
 
@@ -11,11 +11,13 @@ module app.services {
 		constructor(private endpointService: app.utils.IEndpointService, private $firebaseArray: any) {
 		}
 
-		public save(user: app.admin.User): void {
+		public save(user: app.admin.User, successAction: Function): void {
 			var ref = this.endpointService.getUsers();
 			var users = this.$firebaseArray(ref);
 			
-			users.$add(user);
+			users.$add(user).then(() => {
+				successAction();
+			});
 		}
 
 		public login(email: string, password: string): void {
