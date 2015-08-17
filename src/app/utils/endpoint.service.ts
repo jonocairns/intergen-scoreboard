@@ -4,6 +4,7 @@ module app.utils {
 	export interface IEndpointService {
 		getLeaderboard(): Firebase;
 		getUsers(): Firebase;
+		get(): Firebase;
 	}
 
 	class EndpointService implements IEndpointService {
@@ -16,6 +17,10 @@ module app.utils {
 
 		public getUsers(): Firebase {
 			return this.buildFirebase('/users');
+		}
+
+		public get(): Firebase {
+			return new Firebase(this.baseUrl);
 		}
 
 		private buildFirebase(path: string): Firebase {

@@ -10,19 +10,9 @@ module app {
 
         });
 
-        $stateProvider.state('add', {
-            url: '/add-user',
-            templateUrl: 'app/admin/add-user.html',
-            controller: 'addUserController',
-            controllerAs: 'vm'
-
-        });
-        
-        $stateProvider.state('add-score', {
-            url: '/add-score',
-            templateUrl: 'app/admin/add-score.html',
-            controller: 'addScoreController',
-            controllerAs: 'vm'
+        $stateProvider.state('admin', {
+        	url: '/admin',
+        	templateUrl: 'app/admin/admin.html'
         });
 
         $stateProvider.state('leaderboard', {
@@ -42,6 +32,13 @@ module app {
                     return moment().format('dddd');
                 }
             }
+        });
+
+        $stateProvider.state('login', {
+            url: '/login',
+            templateUrl: 'app/admin/login.html',
+            controller: 'loginController',
+            controllerAs: 'vm'
         });
 
         $urlRouterProvider.otherwise('/');

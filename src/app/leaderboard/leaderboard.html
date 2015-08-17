@@ -1,5 +1,11 @@
-<div class="container">
-	<div class="section" ng-show="vm.dataLoading">
+<div class="section">
+	<div class="container leaderboard-wrap">
+		<h1>Leaderboard</h1>
+	</div>
+</div>
+
+<div class="section" ng-show="vm.dataLoading">
+	<div class="container">	
 		<div class="col s12 m4 center loading-spinner">
 			<div class="preloader-wrapper big active">
 			    <div class="spinner-layer spinner-yellow-only">
@@ -16,24 +22,48 @@
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="section" ng-show="!vm.dataLoading">
-		<table class="striped">
-			<thead>
-				<tr>
-					<th>Rank</th>
-					<th>Name</th>
-					<th>Score</th>
-				</tr>
-			</thead>
+<div class="section" ng-show="!vm.dataLoading">
+	<div class="container">
+		<ul class="leaderboard">
+			<li ng-repeat="entry in vm.leaderboard | score">
+				<div class="row">
+					<div class="col m2">
+						<h3 class="rank" ng-bind="$index + 1"></h3>
+					</div>
 
-			<tbody>
-				<tr ng-repeat="entry in vm.leaderboard | score">
-					<td><pre>{{$index + 1}}</pre></td>
-					<td ng-bind="entry.name"></td>
-					<td ng-bind="entry.score"></td>
-				</tr>
-			</tbody>
-		</table>
+					<div class="col m7">
+						<h3 class="name" ng-bind="entry.name"></h3>
+					</div>
+
+					<div class="col m3 right-align">
+						<h3 class="score" ng-bind="entry.score"></h3>
+					</div>
+				</div>
+			</li>
+		</ul>
 	</div>
 </div>
+	
+		<!-- <div class="section" ng-show="!vm.dataLoading">
+			<table class="striped">
+				<thead>
+					<tr>
+						<th>Rank</th>
+						<th>Name</th>
+						<th>Score</th>
+					</tr>
+				</thead>
+	
+				<tbody>
+					<tr ng-repeat="entry in vm.leaderboard | score">
+						<td><pre>{{$index + 1}}</pre></td>
+						<td ng-bind="entry.name"></td>
+						<td ng-bind="entry.score"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div> -->
+<!-- 	</div>
+</div> -->
