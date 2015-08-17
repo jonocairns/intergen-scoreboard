@@ -4,5 +4,79 @@
 			<div class="col m6" ng-include="'app/admin/add-user.html'"></div>
 			<div class="col m6" ng-include="'app/admin/add-score.html'"></div>
 		</div>
+
+		<div class="row">
+			<div class="col m12">
+				<div class="card">
+					<div class="card-content">
+						<span class="card-title">Leaderboard</span>
+
+						<table class="bordered">
+							<thead>
+								<tr>
+									<td>Name</td>
+									<td>Score</td>
+									<td>Day</td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td>Jono</td>
+									<td>124</td>
+									<td>Monday</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="card-action">
+						<div class="input-field">
+							<i class="material-icons prefix">search</i>
+							<input id="leaderboard-search" type="text" class="validate" />
+							<label for="leaderboard-search">Search</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col m12">
+				<div class="card">
+					<div class="card-content">
+						<span class="card-title">Users</span>
+
+						<table class="bordered">
+							<thead>
+								<tr>
+									<td>Name</td>
+									<td>Phone</td>
+									<td>Email</td>
+									<td>Company</td>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr>
+									<td>Jono</td>
+									<td>021111222333</td>
+									<td>jono@cairns.co.nz</td>
+									<td>Intergen</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="card-action">
+						<div class="input-field">
+							<i class="material-icons prefix">search</i>
+							<input id="user-search" type="text" class="validate" />
+							<label for="user-search">Search</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
