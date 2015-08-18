@@ -10,12 +10,13 @@ module app.admin {
 		constructor (private userService: app.services.IUserService, private $state: any) {
 		}
 
-		public save() {
-			this.userService.login(this.email, this.password).then((blah: any) => {
-                console.log(blah);
-                this.$state.go('add-score');
-			});
-		}
+        public save() {
+            this.userService.login(this.email, this.password).then(() => this.$state.go('admin'));
+        }
+
+        public facebookLogin(): void {
+            this.userService.loginFacebook();
+        }
 	}
 
 	angular

@@ -9,7 +9,13 @@ module app.admin {
 		}
 
 		public save() {
-			this.userService.save(this.user);
+			this.userService.save(this.user, () => {
+				this.clear();
+			});
+		}
+
+		public clear() {
+			this.user = User.empty();
 		}
 	}
 

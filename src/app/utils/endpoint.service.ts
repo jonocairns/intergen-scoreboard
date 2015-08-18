@@ -25,7 +25,7 @@ module app.utils {
 		}
 
 		public get(): Firebase {
-			return new Firebase(this.baseUrl);
+		    return this.firebase;
 		}
 	}
 	

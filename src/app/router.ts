@@ -10,19 +10,9 @@ module app {
 
         });
 
-        $stateProvider.state('add', {
-            url: '/add-user',
-            templateUrl: 'app/admin/add-user.html',
-            controller: 'addUserController',
-            controllerAs: 'vm'
-
-        });
-        
-        $stateProvider.state('add-score', {
-            url: '/add-score',
-            templateUrl: 'app/admin/add-score.html',
-            controller: 'addScoreController',
-            controllerAs: 'vm'
+        $stateProvider.state('admin', {
+        	url: '/admin',
+        	templateUrl: 'app/admin/admin.html'
         });
 
         $stateProvider.state('leaderboard', {
