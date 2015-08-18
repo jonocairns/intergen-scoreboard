@@ -2,17 +2,22 @@ module app.components {
     'use strict';
 
     interface INavbarScope extends ng.IScope {
-        date: Date
+        isLoggedIn: boolean
     }
 
     export class NavbarController {
         /* @ngInject */
-        constructor($scope: INavbarScope) {
-            $scope.date = new Date();
+        constructor($scope: INavbarScope, private userService: services.IUserService) {
+            $scope.$watch(() => {
+                return userService.isLoggedIn();
+            }, (newValue: boolean) => {
+                $scope.isLoggedIn = newValue;
+            });
+
         }
     }
 
     angular
         .module('app.components')
-        .controller('app.components.NavbarController', NavbarController);
+        .controller('navbarController', NavbarController);
 }

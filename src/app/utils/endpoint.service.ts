@@ -10,21 +10,22 @@ module app.utils {
 	class EndpointService implements IEndpointService {
 
 		private baseUrl: string = 'https://intergen-scoreboard.firebaseio.com';
+        private firebase: Firebase;
+
+        constructor() {
+            this.firebase = new Firebase(this.baseUrl);
+        }
 
 		public getLeaderboard(): Firebase {
-			return this.buildFirebase('/leaderboard');
+            return this.firebase.child('/leaderboard');
 		}
 
 		public getUsers(): Firebase {
-			return this.buildFirebase('/users');
+            return this.firebase.child('/users');
 		}
 
 		public get(): Firebase {
 			return new Firebase(this.baseUrl);
-		}
-
-		private buildFirebase(path: string): Firebase {
-			return new Firebase(this.baseUrl + path);
 		}
 	}
 	

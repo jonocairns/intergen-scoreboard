@@ -3,12 +3,17 @@ module app.services {
 
 	export interface IUserService {
 		save(user: app.admin.User): void;
-		login(email: string, password: string): void;
+        login(email: string, password: string): any;
+        isLoggedIn(): boolean;
+        logout(): void;
 	} 
 
-	class UserService implements IUserService {
+    class UserService implements IUserService {
+
+        public cachedUser: any;
+
 		/* @ngInject */
-		constructor(private endpointService: app.utils.IEndpointService, private $firebaseArray: any) {
+		constructor(private endpointService: app.utils.IEndpointService, private $firebaseArray: any, private $q: ng.IQService) {
 		}
 
 		public save(user: app.admin.User): void {
@@ -16,16 +21,27 @@ module app.services {
 			var users = this.$firebaseArray(ref);
 			
 			users.$add(user);
-		}
+        }
 
-		public login(email: string, password: string): void {
+		public login(email: string, password: string): any {
 			var ref = this.endpointService.get();
+		    var deffered = this.$q.defer();
+            ref.authWithPassword({ email: email, password: password }, (err: any, authData: any) => {
+                this.cachedUser = authData;
+                deffered.resolve(authData);
+            });
+		    return deffered.promise;
+        }
 
-			ref.authWithPassword({ email: email, password: password }, (err: any, authData: any) => {
-				console.log(err);
-				console.log(authData);
-			});
-		}
+        public logout(): void {
+            var ref = this.endpointService.get();
+            ref.unauth();
+        }
+
+        public isLoggedIn(): boolean {
+            var ref = this.endpointService.get();
+            return !!ref.getAuth();
+        }
 	}
 
 		angular

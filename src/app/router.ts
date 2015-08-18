@@ -51,6 +51,17 @@ module app {
             controllerAs: 'vm'
         });
 
+        $stateProvider.state('logout', {
+            url: '/logout',
+            templateUrl: 'app/admin/logout.html',
+            controllerAs: 'vm',
+            resolve: {
+                logout: (userService: app.services.IUserService) => {
+                    userService.logout();
+                }
+            }
+        });
+
         $urlRouterProvider.otherwise('/');
 	}
 

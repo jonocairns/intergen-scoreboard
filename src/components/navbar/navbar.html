@@ -1,17 +1,21 @@
-<nav role="navigation">
+<nav role="navigation" ng-controller="navbarController">
 	<div class="nav-wrapper container">
 		<a id="logo-container" ui-sref="home" class="brand-logo">Intergen Ignite Leaderboard</a>
 
 		<ul class="right hide-on-med-and-down">
 			<li><a ui-sref="home">Home</a></li>
 			<li><a ui-sref="leaderboard">Leaderboard</a></li>
-			<li><a ui-sref="add">Admin</a></li>
+		    <li><a ui-sref="add">Admin</a></li>
+            <li ng-if="!isLoggedIn"><a ui-sref="login">Login</a></li>
+            <li ng-if="isLoggedIn"><a ui-sref="logout">Logout</a></li>
 		</ul>
 
 		<ul id="nav-mobile" class="side-nav">
 			<li><a ui-sref="home">Home</a></li>
 			<li><a ui-sref="leaderboard">Leaderboard</a></li>
 			<li><a ui-sref="add">Admin</a></li>
+            <li ng-if="!isLoggedIn"><a ui-sref="login">Login</a></li>
+            <li ng-if="isLoggedIn"><a ui-sref="logout">Logout</a></li>
 		</ul>
 		
 		<a href="#" data-activates="nav-mobile" data-sidenav="left" class="button-collapse"><i class="material-icons">menu</i></a>
