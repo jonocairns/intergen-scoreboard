@@ -7,6 +7,7 @@ module app.services {
         save(user: app.admin.User, successAction: Function): void;
         login(email: string, password: string): ng.IPromise<FirebaseAuthData>;
         loginFacebook(): ng.IPromise<FirebaseAuthData>;
+        search(query: string): ng.IPromise<Array<admin.User>>;
     }
 
     class UserService implements IUserService {
@@ -20,7 +21,7 @@ module app.services {
 		public save(user: app.admin.User, successAction: Function): void {
 			var ref = this.endpointService.getUsers();
 			var users = this.$firebaseArray(ref);
-			
+
 			users.$add(user).then(() => {
 				successAction();
 			});
@@ -54,6 +55,20 @@ module app.services {
         public isLoggedIn(): boolean {
             var ref = this.endpointService.get();
             return !!ref.getAuth();
+        }
+
+        public search(query: string): ng.IPromise<Array<admin.User>> {
+            var ref = this.endpointService.getUsers();
+
+            var deffered = this.$q.defer();
+            ref.once('value', (data: any) => {
+                var users = [];
+                _.each(data.val(), (userDto: any) => {
+                    users.push(new admin.User(userDto.id, userDto.name, userDto.company, userDto.email, userDto.phone));
+                });
+                deffered.resolve(users);
+            });
+            return deffered.promise;
         }
 	}
 

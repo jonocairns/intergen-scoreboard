@@ -15,7 +15,7 @@ module app.admin {
         }
 
         public facebookLogin(): void {
-            this.userService.loginFacebook();
+            this.userService.loginFacebook().then(() => this.$state.go('admin'));
         }
 	}
 
