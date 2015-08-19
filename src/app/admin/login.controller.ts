@@ -13,10 +13,6 @@ module app.admin {
         public save() {
             this.userService.login(this.email, this.password).then(() => this.$state.go('admin'));
         }
-
-        public facebookLogin(): void {
-            this.userService.loginFacebook().then(() => this.$state.go('admin'));
-        }
 	}
 
 	angular

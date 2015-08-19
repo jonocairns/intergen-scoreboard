@@ -6,9 +6,13 @@ module app.admin {
 		public score: string;
         public name: string;
         public query: string = '';
+        public users: Array<admin.User>;
 
 		/* @ngInject */
 		constructor (private scoreService: services.IScoreService, private userService: services.IUserService) {
+			this.userService.search(this.query).then((users: Array<admin.User>) => {
+				this.users = users; 
+			});
 		}
 
 		public save(): void {
@@ -20,10 +24,12 @@ module app.admin {
 			});
         }
 
-        public search(): void {
-            this.userService.search(this.query).then((users: Array<admin.User>) => {
-							console.log(users);
-						});
+        public search(query: string): Array<admin.User> {
+            var filteredUsers = _.filter(this.users, (user: admin.User) => {
+				return user.name.indexOf(query) > -1 || user.email.indexOf(query) > -1;
+            });
+
+            return filteredUsers;
         }
 
 		public clear() {

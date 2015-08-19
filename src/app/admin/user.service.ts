@@ -6,7 +6,6 @@ module app.services {
         logout(): void;
         save(user: app.admin.User, successAction: Function): void;
         login(email: string, password: string): ng.IPromise<FirebaseAuthData>;
-        loginFacebook(): ng.IPromise<FirebaseAuthData>;
         search(query: string): ng.IPromise<Array<admin.User>>;
     }
 
@@ -31,16 +30,6 @@ module app.services {
 			var ref = this.endpointService.get();
 		    var deffered = this.$q.defer();
             ref.authWithPassword({ email: email, password: password }, (err: any, authData: FirebaseAuthData) => {
-                this.cachedUser = authData;
-                deffered.resolve(authData);
-            });
-		    return deffered.promise;
-        }
-
-        public loginFacebook(): ng.IPromise<FirebaseAuthData> {
-            var ref = this.endpointService.get();
-            var deffered = this.$q.defer();
-            ref.authWithOAuthPopup('facebook', (error: any, authData: any) => {
                 this.cachedUser = authData;
                 deffered.resolve(authData);
             });
