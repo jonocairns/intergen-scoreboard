@@ -12,7 +12,12 @@ module app {
 
         $stateProvider.state('admin', {
         	url: '/admin',
-        	templateUrl: 'app/admin/admin.html'
+        	templateUrl: 'app/admin/admin.html',
+        	onEnter: (userService: app.services.IUserService, $state: ng.ui.IStateService) => {
+				if(!userService.isLoggedIn()) {
+					$state.go('home');
+				}
+        	}
         });
 
         $stateProvider.state('leaderboard', {
@@ -42,12 +47,12 @@ module app {
         });
 
         $stateProvider.state('logout', {
-            url: '/logout',
-            templateUrl: 'app/admin/logout.html',
+        	url: '/',
             controllerAs: 'vm',
             resolve: {
-                logout: (userService: app.services.IUserService) => {
+                logout: (userService: app.services.IUserService, $state: ng.ui.IStateService) => {
                     userService.logout();
+                    $state.go('home');
                 }
             }
         });
