@@ -6,7 +6,7 @@ module app.admin {
 		}
 
 		public isEmpty(): boolean {
-			return this.id === '';
+			return this.id === '' && this.name === '' && this.email === '';
 		}
 
 		public static empty(): User {

@@ -5,9 +5,11 @@ module app.admin {
 
 		public score: string;
         public users: Array<admin.User>;
-        public user: admin.User;
+        public user: admin.User = admin.User.empty();
         public autocompleteOptions: any;
-        public results: Array<any>
+        public results: Array<any>;
+        public query: string;
+
 		/* @ngInject */
 		constructor (private scoreService: services.IScoreService, private userService: services.IUserService, private $sce: any) {
 			this.autocompleteOptions = {
@@ -52,6 +54,19 @@ module app.admin {
 			return results;
 		}
 
+		public validate(): boolean {
+			if (_.isUndefined(this.score) || this.score === '') return true;
+
+			if (_.isUndefined(this.user) || this.user.isEmpty()) return true;
+
+			var userExists = _.find(this.users, (user: admin.User) => {
+				return user.email === this.user.email;
+			});
+
+			if (_.isUndefined(userExists)) return true;
+
+			return false;
+		}
 
 		public save(): void {
 			var score = parseInt(this.score, 10);
