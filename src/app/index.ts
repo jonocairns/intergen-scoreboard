@@ -11,8 +11,7 @@ module app {
         'ngResource',
         'ui.materialize',
         'firebase',
-        'autocomplete',
-
+        'MassAutoComplete',
         // services
         'app.utils',
         'app.services',
@@ -40,3 +39,4 @@ module app {
     angular.module('app.components', []);
     angular.module('app.directives', []);
 }
+var Materialize = Materialize || {};

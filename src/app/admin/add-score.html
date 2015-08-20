@@ -4,7 +4,21 @@
 
         <div class="input-field">
             <i class="material-icons prefix">account_circle</i>
-            <input id="score-name" type="text" class="validate" ng-model="vm.name" />
+            <div mass-autocomplete>
+                <input id="score-name" type="text" class="validate" ng-model="vm.user.name" mass-autocomplete-item="vm.autocompleteOptions"/>
+                <div class="ac-container" ng-show="results.length" style="position:absolute;">
+                  <ul class="ac-menu">
+                    <li ng-repeat="result in vm.results"
+                      ng-if="$index > 0"
+                      class="ac-menu-item"
+                      ng-class="$index == selected_index ? 'ac-state-focus' : ''">
+                      <a href ng-click="apply_selection($index, $event)" ng-bind-html=result.label> </a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+            
+
             <label for="score-name">Name</label>
         </div>
 
@@ -21,3 +35,5 @@
         <div class="clearfix"></div>
     </div>
 </div>
+
+

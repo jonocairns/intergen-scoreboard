@@ -6,7 +6,7 @@ module app.services {
         logout(): void;
         save(user: app.admin.User, successAction: Function): void;
         login(email: string, password: string): ng.IPromise<FirebaseAuthData>;
-        search(query: string): ng.IPromise<Array<admin.User>>;
+        get(): ng.IPromise<Array<admin.User>>;
     }
 
     class UserService implements IUserService {
@@ -46,7 +46,7 @@ module app.services {
             return !!ref.getAuth();
         }
 
-        public search(query: string): ng.IPromise<Array<admin.User>> {
+        public get(): ng.IPromise<Array<admin.User>> {
             var ref = this.endpointService.getUsers();
 
             var deffered = this.$q.defer();
