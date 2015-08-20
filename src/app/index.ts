@@ -12,6 +12,7 @@ module app {
         'ui.materialize',
         'firebase',
         'MassAutoComplete',
+
         // services
         'app.utils',
         'app.services',

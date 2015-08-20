@@ -28,7 +28,12 @@
 }
 
 .media-full-screen(@rules) {
-	@media (device-width: 100vw) and (device-height: 100vh) {
+	@media (device-width: 100vw) and (device-height: 100vh) and (min-width: @screen-desktop) {
 		@rules();
 	}
+}
+
+.btn-large.intergen {
+	background: @intergen-yellow;
+	color: black;
 }
