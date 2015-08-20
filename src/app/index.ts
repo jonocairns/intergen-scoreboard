@@ -11,7 +11,6 @@ module app {
         'ngResource',
         'ui.materialize',
         'firebase',
-        'autocomplete',
 
         // services
         'app.utils',
