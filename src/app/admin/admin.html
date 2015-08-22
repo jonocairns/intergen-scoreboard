@@ -7,15 +7,13 @@
 
 		<div class="row">
 			<div class="col m12">
-				<div class="card">
+				<div class="card overflowable">
 					<div class="card-content">
 						<span class="card-title">Leaderboard</span>
                         
                         <select class="" ng-model="vm.selectedDay" ng-change="vm.changeDay()" watch material-select>
                             <option  ng-repeat="value in vm.days">{{ value }}</option>
                         </select>
-
-                        <dir-pagination-controls pagination-id="entry"></dir-pagination-controls>
 
 					    <table class="bordered">
 					        <thead>
@@ -33,12 +31,13 @@
 					            <td ng-bind="entry.name"></td>
 					            <td ng-bind="entry.email"></td>
 					            <td ng-bind="entry.score"></td>
-					            <td ng-bind="entry.date"></td>
+					            <td ng-bind="entry.conferenceDay"></td>
 					            <td><button class="btn waves-effect intergen right" ng-click="vm.removeScore(entry)">Remove</button></td>
 					        </tr>
 					        </tbody>
 					    </table>
-                        <dir-pagination-controls pagination-id="entry"></dir-pagination-controls>
+                        <dir-pagination-controls pagination-id="entry" class="yellow"></dir-pagination-controls>
+                        <div class="clearfix"></div>
 					</div>
 
 					<div class="card-action">
@@ -58,8 +57,6 @@
 					<div class="card-content">
 						<span class="card-title">Users</span>
                         
-                        <dir-pagination-controls pagination-id="user"></dir-pagination-controls>
-
 					    <table class="bordered">
 					        <thead>
 					        <tr>
@@ -83,6 +80,8 @@
 					    </table>
 
                         <dir-pagination-controls pagination-id="user"></dir-pagination-controls>
+
+                        <div class="clearfix"></div>
 					</div>
 
 					<div class="card-action">

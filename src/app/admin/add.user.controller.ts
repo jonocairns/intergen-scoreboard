@@ -17,6 +17,10 @@ module app.admin {
 		public clear() {
 			this.user = User.empty();
 		}
+
+		public validate(): boolean {
+			return !this.user.isValid();
+		}
 	}
 
 	angular
