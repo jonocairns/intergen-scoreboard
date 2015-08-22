@@ -6,7 +6,7 @@ module app {
         $stateProvider.state('home', {
             url: '/',
             templateUrl: 'app/home/home.html',
-            controller: 'app.home.HomeController'
+            controller: 'homeController'
 
         });
 
