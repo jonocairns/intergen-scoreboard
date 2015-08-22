@@ -2,7 +2,7 @@ module app.admin {
 	'use strict';
 
 	export class AddScoreController {
-
+		public inputName: string;
 		public score: string;
         public users: Array<admin.User>;
         public user: admin.User = admin.User.empty();
@@ -23,7 +23,8 @@ module app.admin {
 		}
 
 		public select(selected: any) {
-			this.user = selected.obj;
+			var selectedUser = selected.obj;
+			this.user = new User(selectedUser.id, selectedUser.name, selectedUser.company, selectedUser.email, selectedUser.phone);
 		}
 
 		public suggest(query: string) {
@@ -77,6 +78,7 @@ module app.admin {
         }
 
 		public clear() {
+			this.inputName = '';
 			this.user = admin.User.empty();
 			this.score = '';
 		}
