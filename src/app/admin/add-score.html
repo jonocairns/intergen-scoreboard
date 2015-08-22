@@ -5,19 +5,19 @@
         <div class="input-field">
             <i class="material-icons prefix">account_circle</i>
             <div mass-autocomplete>
-                <input id="score-name" type="text" class="validate" ng-model="vm.user.name" mass-autocomplete-item="vm.autocompleteOptions"/>
+                <input id="score-name" type="text" class="validate" ng-model="vm.user.name" mass-autocomplete-item="vm.autocompleteOptions" />
                 <div class="ac-container" ng-show="results.length" style="position:absolute;">
-                  <ul class="ac-menu">
-                    <li ng-repeat="result in vm.results"
-                      ng-if="$index > 0"
-                      class="ac-menu-item"
-                      ng-class="$index == selected_index ? 'ac-state-focus' : ''">
-                      <a href ng-click="apply_selection($index, $event)" ng-bind-html=result.label> </a>
-                    </li>
-                  </ul>
+                    <ul class="ac-menu">
+                        <li ng-repeat="result in vm.results"
+                            ng-if="$index > 0"
+                            class="ac-menu-item"
+                            ng-class="$index == selected_index ? 'ac-state-focus' : ''">
+                            <a href ng-click="apply_selection($index, $event)" ng-bind-html=result.label> </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            
+
 
             <label for="score-name">Name</label>
         </div>
@@ -26,6 +26,25 @@
             <i class="material-icons prefix">assessment</i>
             <input id="score-score" type="text" class="validate" ng-model="vm.score" />
             <label for="score-score">Score</label>
+        </div>
+
+        <div class="input-field" ng-show="vm.user.email">
+            <p ng-show="vm.score">You are about to enter a score of <span ng-bind="vm.score"></span> for the following user.</p>
+            <p ng-hide="vm.score">Details of the currently selected user.</p>
+            <ul>
+                <li ng-show="vm.user.name !== ''">
+                    <p>Name: <span ng-bind="vm.user.name"></span></p>
+                </li>
+                <li ng-show="vm.user.email !== ''">
+                    <p>Email: <span ng-bind="vm.user.email"></span></p>
+                </li>
+                <li ng-show="vm.user.company !== ''">
+                    <p>Company: <span ng-bind="vm.user.company"></span></p>
+                </li>
+                <li ng-show="vm.user.phone !== ''">
+                    <p>Phone: <span ng-bind="vm.user.phone"></span></p>
+                </li>
+            </ul>
         </div>
     </div>
 
