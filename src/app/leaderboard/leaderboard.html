@@ -1,5 +1,5 @@
 <div class="section" ng-show="vm.dataLoading">
-	<div class="container">	
+	<div class="container">
 		<div class="col s12 m4 center loading-spinner">
 			<div class="preloader-wrapper big active">
 			    <div class="spinner-layer spinner-yellow-only">
@@ -20,6 +20,11 @@
 
 <div class="section" ng-show="!vm.dataLoading">
 	<div class="container">
+		<div ng-show="vm.leaderboard.length === 0">
+				<p>
+					<span class="white-text">There are currently no results for today. Check back later!</span>
+				</p>
+		</div>
 		<ul class="leaderboard">
 			<li ng-repeat="entry in vm.leaderboard | score">
 				<div class="row">
@@ -39,7 +44,7 @@
 		</ul>
 	</div>
 </div>
-	
+
 		<!-- <div class="section" ng-show="!vm.dataLoading">
 			<table class="striped">
 				<thead>
@@ -49,7 +54,7 @@
 						<th>Score</th>
 					</tr>
 				</thead>
-	
+
 				<tbody>
 					<tr ng-repeat="entry in vm.leaderboard | score">
 						<td><pre>{{$index + 1}}</pre></td>

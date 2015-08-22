@@ -2,6 +2,7 @@ module app.services {
     'use strict';
 
     export interface IUserService {
+        cachedUser: any;
         isLoggedIn(): boolean;
         logout(): void;
         save(user: app.admin.User, successAction: Function): void;
