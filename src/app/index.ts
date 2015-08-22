@@ -12,6 +12,7 @@ module app {
         'ui.materialize',
         'firebase',
         'MassAutoComplete',
+        'angularUtils.directives.dirPagination',
 
         // services
         'app.utils',

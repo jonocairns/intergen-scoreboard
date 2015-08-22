@@ -12,7 +12,9 @@ module app {
 
         $stateProvider.state('admin', {
         	url: '/admin',
-        	templateUrl: 'app/admin/admin.html',
+            templateUrl: 'app/admin/admin.html',
+            controller: 'adminController',
+            controllerAs: 'vm',
         	onEnter: (userService: app.services.IUserService, $state: ng.ui.IStateService) => {
 				if(!userService.isLoggedIn()) {
 					$state.go('home');

@@ -10,28 +10,35 @@
 				<div class="card">
 					<div class="card-content">
 						<span class="card-title">Leaderboard</span>
+                        
+                        <select class="" ng-model="vm.selectedDay" ng-change="vm.changeDay()" watch material-select>
+                            <option  ng-repeat="value in vm.days">{{ value }}</option>
+                        </select>
 
-						<table class="bordered">
-							<thead>
-								<tr>
-									<td>Name</td>
-									<td>Email</td>
-									<td>Score</td>
-									<td>Day</td>
-									<td>Actions</td>
-								</tr>
-							</thead>
+                        <dir-pagination-controls></dir-pagination-controls>
 
-							<tbody>
-								<tr>
-									<td>Jono</td>
-									<td>jono@cairns.co.nz</td>
-									<td>124</td>
-									<td>Monday</td>
-									<td><button class="btn waves-effect intergen right">Remove</button></td>
-								</tr>
-							</tbody>
-						</table>
+					    <table class="bordered">
+					        <thead>
+					        <tr>
+					            <td>Name</td>
+					            <td>Email</td>
+					            <td>Score</td>
+					            <td>Day</td>
+					            <td>Actions</td>
+					        </tr>
+					        </thead>
+
+					        <tbody>
+					        <tr  dir-paginate="entry in vm.leaderboard | itemsPerPage: 10">
+					            <td ng-bind="entry.name"></td>
+					            <td ng-bind="entry.email"></td>
+					            <td ng-bind="entry.score"></td>
+					            <td ng-bind="entry.date"></td>
+					            <td><button class="btn waves-effect intergen right" ng-click="vm.removeScore(entry)">Remove</button></td>
+					        </tr>
+					        </tbody>
+					    </table>
+                        <dir-pagination-controls></dir-pagination-controls>
 					</div>
 
 					<div class="card-action">
