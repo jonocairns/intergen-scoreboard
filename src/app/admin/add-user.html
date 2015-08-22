@@ -29,7 +29,7 @@
 		</div>
 
 		<div class="card-action">
-			<button class="btn waves-effect waves-light right" ng-click="vm.save()" type="submit" name="action">Add<i class="material-icons right">send</i></button>
+			<button class="btn waves-effect waves-light right" ng-click="vm.save()" ng-disabled="vm.validate()" type="submit" name="action">Add<i class="material-icons right">send</i></button>
 			<button class="btn waves-effect waves-light red left" ng-click="vm.clear()" name="action">Clear<i class="material-icons right">replay</i></button>
 			<div class="clearfix"></div>
 		</div>

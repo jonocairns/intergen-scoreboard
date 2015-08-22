@@ -34,11 +34,46 @@
         }
 
         public removeScore(score: leaderboard.Leaderboard) {
-            this.leaderboard.$remove(score);
+        	swal({
+        		title: 'Are you sure?',
+				text: this.getRemoveScoreMessage(score.name, score.score),
+        		type: 'warning',
+        		showCancelButton: true,
+        		confirmButtonColor: '#F44336',
+        		confirmButtonText: 'Remove',
+        		html: true
+        	}, () => {
+            	this.leaderboard.$remove(score);
+        	});
         }
 
         public removeUser(user: admin.User) {
-            this.users.$remove(user);
+        	swal({
+        		title: 'Are you sure?',
+				text: this.getRemoveUserMessage(user.name, user.email, user.phone),
+				type: 'warning',
+				showCancelButton: true,
+        		confirmButtonColor: '#F44336',
+        		confirmButtonText: 'Remove',
+        		html: true
+        	}, () => {
+	            this.users.$remove(user);
+        	});
+        }
+
+        private getRemoveUserMessage(name: string, email: string, phone: string) {
+			return '<p>You are about to remove the following user:</p><br>' +
+				'<p>' + name + '</p>' +
+				'<p>' + email + '</p>' +
+				'<p>' + phone + '</p>';
+        }
+
+        private getRemoveScoreMessage(name: string, score: number): string {
+			return 'The entry for <span style="color:#F44336; font-weight: bold;">' +
+				name +
+				'</span> with score <span style="color:#F44336; font-weight: bold;">' +
+				score +
+				'</span> will be permanently deleted.';
         }
     }
 
