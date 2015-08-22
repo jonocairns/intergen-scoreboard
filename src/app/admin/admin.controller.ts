@@ -40,7 +40,7 @@
         		type: 'warning',
         		showCancelButton: true,
         		confirmButtonColor: '#F44336',
-        		confirmButtonText: 'Yes',
+        		confirmButtonText: 'Remove',
         		html: true
         	}, () => {
             	this.leaderboard.$remove(score);
@@ -54,7 +54,7 @@
 				type: 'warning',
 				showCancelButton: true,
         		confirmButtonColor: '#F44336',
-        		confirmButtonText: 'Yes',
+        		confirmButtonText: 'Remove',
         		html: true
         	}, () => {
 	            this.users.$remove(user);
