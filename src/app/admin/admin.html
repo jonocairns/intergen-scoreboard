@@ -27,7 +27,7 @@
 					        </thead>
 
 					        <tbody>
-					        <tr  dir-paginate="entry in vm.leaderboard | itemsPerPage: 5" pagination-Id="entry">
+					        <tr  dir-paginate="entry in vm.leaderboard | score | itemsPerPage: 5" pagination-Id="entry">
 					            <td ng-bind="entry.name"></td>
 					            <td ng-bind="entry.email"></td>
 					            <td ng-bind="entry.score"></td>
