@@ -9,6 +9,9 @@ module app.admin {
 		}
 
 		public save() {
+			var guid = app.utils.Guid.new();
+			this.user.id = guid.value;
+
 			this.userService.save(this.user, () => {
 				this.clear();
 			});
