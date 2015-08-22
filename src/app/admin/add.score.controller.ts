@@ -24,7 +24,7 @@ module app.admin {
 
 		public select(selected: any) {
 			var selectedUser = selected.obj;
-			this.user = new User(selectedUser.id, selectedUser.name, selectedUser.company, selectedUser.email, selectedUser.phone);
+			this.user = new User(selectedUser.id, selectedUser.name, selectedUser.company, selectedUser.email, selectedUser.phone, selectedUser.image);
 		}
 
 		public suggest(query: string) {

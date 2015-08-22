@@ -1,5 +1,5 @@
 module app.services {
-	'use strict';
+    'use strict';
 
     export interface IUserService {
         isLoggedIn(): boolean;
@@ -8,33 +8,34 @@ module app.services {
         login(email: string, password: string): ng.IPromise<FirebaseAuthData>;
         get(): ng.IPromise<Array<admin.User>>;
         getReference(): AngularFireArray;
+        loginProvider(provider: string): ng.IPromise<FirebaseAuthData>;
     }
 
     class UserService implements IUserService {
 
         public cachedUser: any;
 
-		/* @ngInject */
-		constructor(private endpointService: app.utils.IEndpointService, private $firebaseArray: any, private $q: ng.IQService) {
-		}
+        /* @ngInject */
+        constructor(private endpointService: app.utils.IEndpointService, private $firebaseArray: any, private $q: ng.IQService) {
+        }
 
-		public save(user: app.admin.User, successAction: Function): void {
-			var ref = this.endpointService.getUsers();
-			var users = this.$firebaseArray(ref);
+        public save(user: app.admin.User, successAction: Function): void {
+            var ref = this.endpointService.getUsers();
+            var users = this.$firebaseArray(ref);
 
-			users.$add(user).then(() => {
-				successAction();
-			});
-		}
+            users.$add(user).then(() => {
+                successAction();
+            });
+        }
 
-		public login(email: string, password: string): ng.IPromise<FirebaseAuthData> {
-			var ref = this.endpointService.get();
-		    var deffered = this.$q.defer();
+        public login(email: string, password: string): ng.IPromise<FirebaseAuthData> {
+            var ref = this.endpointService.get();
+            var deffered = this.$q.defer();
             ref.authWithPassword({ email: email, password: password }, (err: any, authData: FirebaseAuthData) => {
                 this.cachedUser = authData;
                 deffered.resolve(authData);
             });
-		    return deffered.promise;
+            return deffered.promise;
         }
 
         public logout(): void {
@@ -54,9 +55,19 @@ module app.services {
             ref.once('value', (data: any) => {
                 var users = [];
                 _.each(data.val(), (userDto: any) => {
-                    users.push(new admin.User(userDto.id, userDto.name, userDto.company, userDto.email, userDto.phone));
+                    users.push(new admin.User(userDto.id, userDto.name, userDto.company, userDto.email, userDto.phone, userDto.image));
                 });
                 deffered.resolve(users);
+            });
+            return deffered.promise;
+        }
+
+        public loginProvider(provider: string): ng.IPromise<FirebaseAuthData> {
+            var ref = this.endpointService.get();
+            var deffered = this.$q.defer();
+            ref.authWithOAuthPopup(provider, (error: any, authData: any) => {
+                this.cachedUser = authData;
+                deffered.resolve(authData);
             });
             return deffered.promise;
         }
@@ -67,9 +78,9 @@ module app.services {
 
             return this.$firebaseArray(query);
         }
-	}
+    }
 
-		angular
-		.module('app.services')
-		.service('userService', UserService);
+    angular
+        .module('app.services')
+        .service('userService', UserService);
 }

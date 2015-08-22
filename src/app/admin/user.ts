@@ -2,11 +2,11 @@ module app.admin {
 	'use strict';
 	export class User {
 		constructor(public id: string, public name: string, public company: string,
-		public email: string, public phone: string) {
+		public email: string, public phone: string, public image: string) {
 		}
 
 		public static empty(): User {
-			return new User('', '', '', '', '');
+			return new User('', '', '', '', '', '');
 		}
 
 		public isEmpty(): boolean {
@@ -19,14 +19,16 @@ module app.admin {
 				this.name === other.name &&
 				this.company === other.company &&
 				this.email === other.email &&
-				this.phone === other.phone;
+				this.phone === other.phone&&
+		        this.image === other.image;
 		}
 
 		public isValid(): boolean {
 			return _.isString(this.name) && this.name.length > 0 &&
 				_.isString(this.company) && this.company.length > 0 &&
 				_.isString(this.email) && this.email.length > 0 &&
-				_.isString(this.phone) && this.phone.length > 0;
+				_.isString(this.email) && this.email.length > 0 &&
+                _.isString(this.image) && this.image.length > 0;
 		}
 	}
 }

@@ -4,6 +4,13 @@
 			<span class="card-title black-text">Register</span>
 
 			<div class="input-field">
+				<img src="http://www.townofmanchester.org/allsites/images/facebookicon.png" width="24" ng-click="vm.pullFacebook()" />
+				<img src="http://cdn.business2community.com/wp-content/uploads/2015/07/Twitter-icon.png.png" width="24" ng-click="vm.pullTwitter()" />
+				<img src="https://cdn3.iconfinder.com/data/icons/leaf/256/googleplus.png" width="24" ng-click="vm.pullGoogle()" />
+
+			</div>
+
+			<div class="input-field">
 				<i class="material-icons prefix">account_circle</i>
 				<input id="name" type="text" class="validate" ng-model="vm.user.name" />
 				<label for="name">Full Name</label>
