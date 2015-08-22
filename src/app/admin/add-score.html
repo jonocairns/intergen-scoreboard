@@ -2,22 +2,20 @@
     <div class="card-content">
         <span class="card-title">Add Score</span>
 
-        <div class="input-field">
+        <div class="input-field" mass-autocomplete>
             <i class="material-icons prefix">account_circle</i>
-            <div mass-autocomplete>
-                <input id="score-name" type="text" class="validate" ng-model="vm.user.name" mass-autocomplete-item="vm.autocompleteOptions"/>
-                <div class="ac-container" ng-show="results.length" style="position:absolute;">
-                  <ul class="ac-menu">
-                    <li ng-repeat="result in vm.results"
-                      ng-if="$index > 0"
-                      class="ac-menu-item"
-                      ng-class="$index == selected_index ? 'ac-state-focus' : ''">
-                      <a href ng-click="apply_selection($index, $event)" ng-bind-html=result.label> </a>
-                    </li>
-                  </ul>
-                </div>
+            <input id="score-name" type="text" class="validate" ng-model="vm.user.name" mass-autocomplete-item="vm.autocompleteOptions"/>
+
+            <div class="ac-container" ng-show="results.length">
+                <ul class="ac-menu">
+                  	<li ng-repeat="result in vm.results"
+                    	ng-if="$index > 0"
+                    	class="ac-menu-item"
+                    	ng-class="$index == selected_index ? 'ac-state-focus' : ''">
+                    	<a href ng-click="apply_selection($index, $event)" ng-bind-html="result.label"> </a>
+                  	</li>
+                </ul>
             </div>
-            
 
             <label for="score-name">Name</label>
         </div>

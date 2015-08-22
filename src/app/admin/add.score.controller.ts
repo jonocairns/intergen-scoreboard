@@ -15,7 +15,7 @@ module app.admin {
 			this.autocompleteOptions = {
 				suggest: this.suggest.bind(this),
 				on_select: this.select.bind(this)
-			}
+			};
 
 			this.userService.get().then((users: Array<admin.User>) => {
 				this.users = users;
@@ -27,7 +27,7 @@ module app.admin {
 		}
 
 		public suggest(query: string) {
-			var query = query.toLowerCase().trim();
+			query = query.toLowerCase().trim();
 			var filteredUsers = _.filter(this.users, (user: admin.User) => {
 				return user.name.toLowerCase().indexOf(query) !== -1 || user.email.toLowerCase().indexOf(query) !== -1;
 			});
@@ -38,15 +38,8 @@ module app.admin {
 			         value: user.name,
 			         obj: user,
 			         label: this.$sce.trustAsHtml(
-			           '<div class="row">' +
-			           ' <div class="col-xs-5">' +
-			           '  <i class="fa fa-user"></i>' +
-			           '  <strong>' + user.name + '</strong>'+
-			           ' </div>' +
-			           ' <div class="col-xs-7 text-right text-muted">' +
-			           '  <small>' + user.email + '</small>' +
-			           ' </div>' +
-			           '</div>'
+			         	'<strong class="ac-name">' + user.name + '</strong>' +
+			         	'<small class="ac-email">' + user.email + '</small>'
 			         )
 			       });
 			});
@@ -55,15 +48,21 @@ module app.admin {
 		}
 
 		public validate(): boolean {
-			if (_.isUndefined(this.score) || this.score === '') return true;
+			if (_.isUndefined(this.score) || this.score === '') {
+				return true;
+			}
 
-			if (_.isUndefined(this.user) || this.user.isEmpty()) return true;
+			if (_.isUndefined(this.user) || this.user.isEmpty()) {
+				return true;
+			}
 
 			var userExists = _.find(this.users, (user: admin.User) => {
 				return user.email === this.user.email;
 			});
 
-			if (_.isUndefined(userExists)) return true;
+			if (_.isUndefined(userExists)) {
+				return true;
+			}
 
 			return false;
 		}
