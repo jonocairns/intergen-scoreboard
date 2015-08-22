@@ -4,19 +4,21 @@
     export class AdminController {
         public leaderboard: AngularFireArray;
         public dataLoading: boolean = true;
-        public days: Array<string>;
+        public days: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         public selectedDay: string;
+        public users: AngularFireArray;
 
         /* @ngInject */
-        constructor(private leaderboardService: services.ILeaderboardService) {
-            this.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
+        constructor(private leaderboardService: services.ILeaderboardService, private userService: services.IUserService) {
             this.selectedDay = moment().format('dddd');
 
             this.leaderboard = leaderboardService.getByDay(this.selectedDay);
+            this.users = userService.getReference();
 
             this.leaderboard.$loaded(() => {
-                this.dataLoading = false;
+                this.users.$loaded(() => {
+                    this.dataLoading = false;
+                });
             });
         }
 
@@ -33,6 +35,10 @@
 
         public removeScore(score: leaderboard.Leaderboard) {
             this.leaderboard.$remove(score);
+        }
+
+        public removeUser(user: admin.User) {
+            this.users.$remove(user);
         }
     }
 

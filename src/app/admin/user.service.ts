@@ -7,6 +7,7 @@ module app.services {
         save(user: app.admin.User, successAction: Function): void;
         login(email: string, password: string): ng.IPromise<FirebaseAuthData>;
         get(): ng.IPromise<Array<admin.User>>;
+        getReference(): AngularFireArray;
     }
 
     class UserService implements IUserService {
@@ -58,6 +59,13 @@ module app.services {
                 deffered.resolve(users);
             });
             return deffered.promise;
+        }
+
+        public getReference(): AngularFireArray {
+            var ref = this.endpointService.getUsers();
+            var query = ref.orderByChild('name');
+
+            return this.$firebaseArray(query);
         }
 	}
 
