@@ -52,7 +52,7 @@
 					<div class="card-action">
 						<div class="input-field">
 							<i class="material-icons prefix">search</i>
-							<input id="leaderboard-search" type="text" class="validate" ng-model="vm.leaderboardSearchQuery" ng-change="vm.searchLeaderboard()"/>
+							<input id="leaderboard-search" type="text" class="validate" ng-model="vm.leaderboardSearchQuery" ng-change="vm.searchLeaderboard()" ng-model-options="{ debounce: 1000 }"/>
 							<label for="leaderboard-search">Search</label>
 						</div>
 					</div>
@@ -105,7 +105,7 @@
 					<div class="card-action">
 						<div class="input-field">
 							<i class="material-icons prefix">search</i>
-							<input id="user-search" type="text" class="validate" ng-model="vm.userSearchQuery" ng-change="vm.searchUsers()" />
+							<input id="user-search" type="text" class="validate" ng-model="vm.userSearchQuery" ng-change="vm.searchUsers()" ng-model-options="{ debounce: 1000 }" />
 							<label for="user-search">Search</label>
 						</div>
 					</div>
