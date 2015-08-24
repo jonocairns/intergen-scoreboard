@@ -2,18 +2,25 @@
     'use strict';
 
     export class AdminController {
-        public leaderboard: AngularFireArray;
+        public leaderboard: any;
         public dataLoading: boolean = true;
         public days: Array<string> = utils.Days.get();
         public selectedDay: string;
-        public users: AngularFireArray;
+        public users: any;
+        public usersRef: any;
+        public leaderboardSearchQuery: string = '';
+        public userSearchQuery: string = '';
+        public leaderboardRef: any;
 
         /* @ngInject */
         constructor(private leaderboardService: services.ILeaderboardService, private userService: services.IUserService) {
             this.selectedDay = moment().format('dddd');
 
             this.leaderboard = leaderboardService.getByDay(this.selectedDay);
+            this.leaderboardRef = this.leaderboard;
+
             this.users = userService.getReference();
+            this.usersRef = this.users;
 
             this.leaderboard.$loaded(() => {
                 this.users.$loaded(() => {
@@ -24,12 +31,49 @@
 
         public changeDay(): void {
             this.dataLoading = true;
-            this.leaderboard.$destroy();
+            if(!_.isUndefined(this.leaderboard.$destroy)) {
+                this.leaderboard.$destroy();
+            }
+
+            this.leaderboardRef.$destroy();
+            this.usersRef.$destroy();
+
+            this.leaderboard = [];
+            this.leaderboardRef = [];
 
             this.leaderboard = this.leaderboardService.getByDay(this.selectedDay);
+            this.leaderboardRef = this.leaderboard;
 
             this.leaderboard.$loaded(() => {
                 this.dataLoading = false;
+            });
+            this.searchLeaderboard();
+        }
+
+        public searchLeaderboard(): void {
+            this.leaderboard = this.leaderboardRef;
+
+            if(_.isUndefined(this.leaderboardSearchQuery) || this.leaderboardSearchQuery === ''){
+                return;
+            }
+
+            this.leaderboard = _.filter(this.leaderboard, (entry: any) => {
+                var query = this.leaderboardSearchQuery.toLowerCase();
+                return entry.name.indexOf(query) > -1;
+            });
+        }
+
+        public searchUsers(): void {
+            this.users = this.usersRef;
+
+            if(_.isUndefined(this.userSearchQuery) || this.userSearchQuery === ''){
+                return;
+            }
+
+            this.users = _.filter(this.users, (user: any) => {
+                var search = this.userSearchQuery.toLowerCase();
+                return user.name.toLowerCase().indexOf(search) > -1 &&
+                user.email.toLowerCase().indexOf(search) > -1;
             });
         }
 

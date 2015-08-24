@@ -17,7 +17,8 @@
 
               <div ng-show="vm.leaderboard.length === 0">
           				<p>
-          					<span>There are currently no results for the selected day.</span>
+          					<span ng-show="!vm.dataLoading && vm.leaderboardSearchQuery.length === 0">There are currently no results for the selected day.</span>
+                            <span ng-show="!vm.dataLoading && vm.leaderboardSearchQuery.length !== 0">There are no results for the search '<span ng-bind="vm.leaderboardSearchQuery"></span>'. Try a broader search term.</span>
           				</p>
           		</div>
 
@@ -51,7 +52,7 @@
 					<div class="card-action">
 						<div class="input-field">
 							<i class="material-icons prefix">search</i>
-							<input id="leaderboard-search" type="text" class="validate" />
+							<input id="leaderboard-search" type="text" class="validate" ng-model="vm.leaderboardSearchQuery" ng-change="vm.searchLeaderboard()"/>
 							<label for="leaderboard-search">Search</label>
 						</div>
 					</div>
@@ -104,7 +105,7 @@
 					<div class="card-action">
 						<div class="input-field">
 							<i class="material-icons prefix">search</i>
-							<input id="user-search" type="text" class="validate" />
+							<input id="user-search" type="text" class="validate" ng-model="vm.userSearchQuery" ng-change="vm.searchUsers()" />
 							<label for="user-search">Search</label>
 						</div>
 					</div>
