@@ -59,7 +59,7 @@
 
             this.leaderboard = _.filter(this.leaderboard, (entry: any) => {
                 var query = this.leaderboardSearchQuery.toLowerCase();
-                return entry.name.indexOf(query) > -1;
+                return entry.name.toLowerCase().indexOf(query) > -1;
             });
         }
 
