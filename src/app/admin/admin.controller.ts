@@ -4,7 +4,7 @@
     export class AdminController {
         public leaderboard: AngularFireArray;
         public dataLoading: boolean = true;
-        public days: Array<string> = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        public days: Array<string> = utils.Days.get();
         public selectedDay: string;
         public users: AngularFireArray;
 
@@ -81,4 +81,3 @@
         .module('app.admin')
         .controller('adminController', AdminController);
 }
-

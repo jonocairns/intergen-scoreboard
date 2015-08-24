@@ -9,6 +9,7 @@ module app.admin {
         public autocompleteOptions: any;
         public results: Array<any>;
         public query: string;
+				public days: Array<string> = utils.Days.get();
 
 		/* @ngInject */
 		constructor (private scoreService: services.IScoreService, private userService: services.IUserService, private $sce: any) {
