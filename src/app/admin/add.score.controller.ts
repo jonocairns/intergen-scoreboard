@@ -9,7 +9,9 @@ module app.admin {
         public autocompleteOptions: any;
         public results: Array<any>;
         public query: string;
-				public days: Array<string> = utils.Days.get();
+		public days: Array<string> = utils.Days.get();
+		public selectedDay: string;
+		public selectedTime: any;
 
 		/* @ngInject */
 		constructor (private scoreService: services.IScoreService, private userService: services.IUserService, private $sce: any) {
@@ -21,6 +23,8 @@ module app.admin {
 			this.userService.get().then((users: Array<admin.User>) => {
 				this.users = users;
 			});
+
+			this.selectedTime = new Date();
 		}
 
 		public select(selected: any) {
@@ -71,7 +75,11 @@ module app.admin {
 
 		public save(): void {
 			var score = parseInt(this.score, 10);
-			var payload = new leaderboard.Leaderboard(score, this.user.id, this.user.name, new Date(), moment().format('dddd'));
+			var scoreDay = this.selectedTime;
+			if(this.selectedTime instanceof Date) {
+				scoreDay = moment(this.selectedTime).format('dddd');
+			}
+			var payload = new leaderboard.Leaderboard(score, this.user.id, this.user.name, new Date().toISOString(), scoreDay);
 
 			this.scoreService.add(payload, () => {
 				this.clear();
