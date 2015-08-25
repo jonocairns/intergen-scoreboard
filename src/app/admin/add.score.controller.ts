@@ -2,32 +2,38 @@ module app.admin {
 	'use strict';
 
 	export class AddScoreController {
-
+		public inputName: string;
 		public score: string;
         public users: Array<admin.User>;
         public user: admin.User = admin.User.empty();
         public autocompleteOptions: any;
         public results: Array<any>;
         public query: string;
+		public days: Array<string> = utils.Days.get();
+		public selectedDay: string;
+		public selectedTime: any;
 
 		/* @ngInject */
 		constructor (private scoreService: services.IScoreService, private userService: services.IUserService, private $sce: any) {
 			this.autocompleteOptions = {
 				suggest: this.suggest.bind(this),
 				on_select: this.select.bind(this)
-			}
+			};
 
 			this.userService.get().then((users: Array<admin.User>) => {
 				this.users = users;
 			});
+
+			this.selectedTime = new Date();
 		}
 
 		public select(selected: any) {
-			this.user = selected.obj;
+			var selectedUser = selected.obj;
+			this.user = new User(selectedUser.id, selectedUser.name, selectedUser.company, selectedUser.email, selectedUser.phone, selectedUser.image);
 		}
 
 		public suggest(query: string) {
-			var query = query.toLowerCase().trim();
+			query = query.toLowerCase().trim();
 			var filteredUsers = _.filter(this.users, (user: admin.User) => {
 				return user.name.toLowerCase().indexOf(query) !== -1 || user.email.toLowerCase().indexOf(query) !== -1;
 			});
@@ -38,15 +44,8 @@ module app.admin {
 			         value: user.name,
 			         obj: user,
 			         label: this.$sce.trustAsHtml(
-			           '<div class="row">' +
-			           ' <div class="col-xs-5">' +
-			           '  <i class="fa fa-user"></i>' +
-			           '  <strong>' + user.name + '</strong>'+
-			           ' </div>' +
-			           ' <div class="col-xs-7 text-right text-muted">' +
-			           '  <small>' + user.email + '</small>' +
-			           ' </div>' +
-			           '</div>'
+			         	'<strong class="ac-name">' + user.name + '</strong>' +
+			         	'<small class="ac-email">' + user.email + '</small>'
 			         )
 			       });
 			});
@@ -55,22 +54,32 @@ module app.admin {
 		}
 
 		public validate(): boolean {
-			if (_.isUndefined(this.score) || this.score === '') return true;
+			if (_.isUndefined(this.score) || this.score === '') {
+				return true;
+			}
 
-			if (_.isUndefined(this.user) || this.user.isEmpty()) return true;
+			if (_.isUndefined(this.user) || this.user.isEmpty()) {
+				return true;
+			}
 
 			var userExists = _.find(this.users, (user: admin.User) => {
 				return user.email === this.user.email;
 			});
 
-			if (_.isUndefined(userExists)) return true;
+			if (_.isUndefined(userExists)) {
+				return true;
+			}
 
 			return false;
 		}
 
 		public save(): void {
 			var score = parseInt(this.score, 10);
-			var payload = new leaderboard.Leaderboard(score, this.user.id, this.user.name, new Date(), moment().format('dddd'));
+			var scoreDay = this.selectedTime;
+			if(this.selectedTime instanceof Date) {
+				scoreDay = moment(this.selectedTime).format('dddd');
+			}
+			var payload = new leaderboard.Leaderboard(score, this.user.id, this.user.name, new Date().toISOString(), scoreDay);
 
 			this.scoreService.add(payload, () => {
 				this.clear();
@@ -78,6 +87,7 @@ module app.admin {
         }
 
 		public clear() {
+			this.inputName = '';
 			this.user = admin.User.empty();
 			this.score = '';
 		}

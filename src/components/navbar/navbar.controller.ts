@@ -6,6 +6,7 @@ module app.components {
     }
 
     export class NavbarController {
+
         /* @ngInject */
         constructor($scope: INavbarScope, private userService: services.IUserService) {
             $scope.$watch(() => {

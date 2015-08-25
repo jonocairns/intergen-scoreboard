@@ -1,35 +1,37 @@
 <div class="card" ng-controller="addUserController as vm">
-	<div class="card-content">
-		<span class="card-title">Add User</span>
+	<form>
+		<div class="card-content">
+			<span class="card-title">Add User</span>
 
-		<div class="input-field">
-			<i class="material-icons prefix">account_circle</i>
-			<input id="user-name" type="text" class="validate" ng-model="vm.user.name" />
-			<label for="user-name">Name</label>
+			<div class="input-field">
+				<i class="material-icons prefix">account_circle</i>
+				<input id="user-name" type="text" class="validate" ng-model="vm.user.name" />
+				<label for="user-name">Name</label>
+			</div>	
+
+			<div class="input-field">
+				<i class="material-icons prefix">class</i>
+				<input id="user-company" type="text" class="validate" ng-model="vm.user.company" />
+				<label for="user-company">Company</label>
+			</div>
+
+			<div class="input-field">
+				<i class="material-icons prefix">email</i>
+				<input id="user-email" type="text" class="validate" ng-model="vm.user.email" />
+				<label for="user-email">Email</label>
+			</div>
+
+			<div class="input-field">
+				<i class="material-icons prefix">phone</i>
+				<input id="user-phone" type="text" class="validate" ng-model="vm.user.phone" />
+				<label for="user-phone">Phone</label>
+			</div>
 		</div>
 
-		<div class="input-field">
-			<i class="material-icons prefix">class</i>
-			<input id="user-company" type="text" class="validate" ng-model="vm.user.company" />
-			<label for="user-company">Company</label>
+		<div class="card-action">
+			<button class="btn waves-effect waves-light right" ng-click="vm.save()" ng-disabled="vm.validate()" type="submit" name="action">Add<i class="material-icons right">send</i></button>
+			<button class="btn waves-effect waves-light red left" ng-click="vm.clear()" name="action">Clear<i class="material-icons right">replay</i></button>
+			<div class="clearfix"></div>
 		</div>
-
-		<div class="input-field">
-			<i class="material-icons prefix">email</i>
-			<input id="user-email" type="text" class="validate" ng-model="vm.user.email" />
-			<label for="user-email">Email</label>
-		</div>
-
-		<div class="input-field">
-			<i class="material-icons prefix">phone</i>
-			<input id="user-phone" type="text" class="validate" ng-model="vm.user.phone" />
-			<label for="user-phone">Phone</label>
-		</div>
-	</div>
-
-	<div class="card-action">
-		<button class="btn waves-effect waves-light right" ng-click="vm.save()" type="submit" name="action">Add<i class="material-icons right">send</i></button>
-		<button class="btn waves-effect waves-light red left" ng-click="vm.clear()" type="submit" name="action">Clear<i class="material-icons right">replay</i></button>
-		<div class="clearfix"></div>
-	</div>
+	</form>
 </div>

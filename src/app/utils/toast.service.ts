@@ -12,7 +12,7 @@ module app.utils {
 		}
 
 		public toast(message: string, duration?: number): void {
-			if(_.isUndefined(duration)){
+			if(_.isUndefined(duration)) {
             	Materialize.toast(message, this.defaultDuration);
 			} else {
 				Materialize.toast(message, duration);

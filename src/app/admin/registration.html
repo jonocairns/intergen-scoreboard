@@ -1,0 +1,43 @@
+<div class="card" ng-controller="registrationController as vm">
+	<form action="">
+		<div class="card-content">
+			<span class="card-title black-text">Register</span>
+
+			<div class="input-field">
+				<img src="http://www.townofmanchester.org/allsites/images/facebookicon.png" width="24" ng-click="vm.pullFacebook()" />
+				<img src="http://cdn.business2community.com/wp-content/uploads/2015/07/Twitter-icon.png.png" width="24" ng-click="vm.pullTwitter()" />
+				<img src="https://cdn3.iconfinder.com/data/icons/leaf/256/googleplus.png" width="24" ng-click="vm.pullGoogle()" />
+
+			</div>
+
+			<div class="input-field">
+				<i class="material-icons prefix">account_circle</i>
+				<input id="name" type="text" class="validate" ng-model="vm.user.name" />
+				<label for="name">Full Name</label>
+			</div>
+
+			<div class="input-field">
+				<i class="material-icons prefix">email</i>
+				<input id="email" type="email" class="validate" ng-model="vm.user.email" />
+				<label for="email">Email Address</label>
+			</div>
+
+			<div class="input-field">
+				<i class="material-icons prefix">stay_current_portrait</i>
+				<input id="phone" type="text" class="validate" ng-model="vm.user.phone" />
+				<label for="phone">Phone Number</label>
+			</div>
+
+			<div class="input-field">
+				<i class="material-icons prefix">class</i>
+				<input id="company" type="text" class="validate" ng-model="vm.user.company" />
+				<label for="company">Company</label>
+			</div>
+		</div>
+
+		<div class="card-action">
+			<button class="btn waves-effect waves-light right" ng-click="vm.register()" ng-disabled="vm.validate()" type="submit" name="action">Register<i class="material-icons right">send</i></button>
+			<div class="clearfix"></div>
+		</div>
+	</form>
+</div>

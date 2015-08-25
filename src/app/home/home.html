@@ -1,9 +1,9 @@
 <div class="container">
 	<div class="section hero">
-		<h1 class="header center white-text">Bringing you the future today</h1>
+		<h1 class="header center white-text">Igniting the future, today</h1>
 		<div class="row center">
 			<h5 class="header col s12 white-text">
-				Be in to win an Xbone. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nostrum maxime blanditiis molestias tempore!ho
+				Be in to win an Xbox One!
 			</h5>
 		</div>
 		<div class="row center">
@@ -20,42 +20,7 @@
 			</div>
 
 			<div class="col s12 m5">
-				<div class="card">
-					<form>
-						<div class="card-content">
-							<span class="card-title black-text">Register</span>
-
-							<div class="input-field">
-								<i class="material-icons prefix">account_circle</i>
-								<input id="name" type="text" class="validate" ng-model="vm.user.name" />
-								<label for="name">Full Name</label>
-							</div>
-
-							<div class="input-field">
-								<i class="material-icons prefix">email</i>
-								<input id="email" type="email" class="validate" ng-model="vm.user.email" />
-								<label for="email">Email Address</label>
-							</div>
-
-							<div class="input-field">
-								<i class="material-icons prefix">stay_current_portrait</i>
-								<input id="phone" type="text" class="validate" ng-model="vm.user.phone" />
-								<label for="phone">Phone Number</label>
-							</div>
-
-							<div class="input-field">
-								<i class="material-icons prefix">class</i>
-								<input id="company" type="text" class="validate" ng-model="vm.user.company" />
-								<label for="company">Company</label>
-							</div>
-						</div>
-
-						<div class="card-action">
-							<button class="btn waves-effect waves-light right" ng-click="vm.save()" type="submit" name="action">Register<i class="material-icons right">send</i></button>
-							<div class="clearfix"></div>
-						</div>
-					</form>
-				</div>
+				<div ng-include="'app/admin/registration.html'"></div>
 			</div>
 		</div>
 	</div>
