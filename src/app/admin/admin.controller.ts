@@ -36,7 +36,6 @@
             }
 
             this.leaderboardRef.$destroy();
-            this.usersRef.$destroy();
 
             this.leaderboard = [];
             this.leaderboardRef = [];
