@@ -44,7 +44,10 @@
   					            <td ng-bind="entry.email"></td>
   					            <td ng-bind="entry.score"></td>
   					            <td ng-bind="entry.conferenceDay"></td>
-  					            <td><button class="btn waves-effect intergen right" ng-click="vm.removeScore(entry)">Remove</button></td>
+  					            <td>
+                            <button class="btn waves-effect intergen" ng-click="vm.popDetail(entry.id)">Detail</button>
+                            <button class="btn waves-effect intergen" ng-click="vm.removeScore(entry)">Remove</button>
+                        </td>
   					        </tr>
   					        </tbody>
   					    </table>
