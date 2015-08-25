@@ -13,7 +13,7 @@
         public leaderboardRef: any;
 
         /* @ngInject */
-        constructor(private leaderboardService: services.ILeaderboardService, private userService: services.IUserService) {
+        constructor(private leaderboardService: services.ILeaderboardService, private userService: services.IUserService, private mandrillService: utils.IMandrillService) {
             this.selectedDay = moment().format('dddd');
 
             this.leaderboard = leaderboardService.getByDay(this.selectedDay);
@@ -65,6 +65,19 @@
                 this.dataLoading = false;
             });
             this.searchLeaderboard();
+        }
+
+        public message(entryId: string) {
+            var user = _.find(this.usersRef, (user: any) => {
+                return user.id === entryId;
+            });
+
+            if (_.isUndefined(user)) {
+                swal('User not found!');
+                return;
+            }
+
+            this.mandrillService.send(user.email, 'ignite@intergen.co.nz', 'This is a message!', 'Message subject');
         }
 
         public searchLeaderboard(): void {

@@ -25,8 +25,13 @@
 				<input id="user-search" class="white-text" type="text" class="validate" ng-model="vm.searchQuery" ng-change="vm.search()" placeholder="Search for your score..."/>
 			</div>
 		</div>
-
-		<div ng-show="vm.leaderboard.length === 0">
+		
+		<div ng-show="vm.leaderboard.length === 0 && vm.searchQuery !== '' && vm.leaderboardRef.length !== 0">
+				<p>
+					<span class="white-text">We cannot find any results for the search '<span ng-bind="vm.searchQuery"></span>'. Ensure you have typed in the correct text or try something less specific.</span>
+				</p>
+		</div>
+		<div ng-show="vm.leaderboardRef.length === 0">
 				<p>
 					<span class="white-text">There are currently no results for today. Check back later!</span>
 				</p>
