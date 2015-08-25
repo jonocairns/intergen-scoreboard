@@ -29,6 +29,24 @@
             });
         }
 
+        public popDetail(id: string): void {
+            var user = _.find(this.usersRef, (user: any) => {
+                return user.id === id;
+            });
+
+            if (_.isUndefined(user)) {
+                swal('User not found!');
+                return;
+            }
+
+            swal({
+                title: user.name,
+                text: this.getDetailsMessage(user),
+                type: 'info',
+                html: true
+            });
+        }
+
         public changeDay(): void {
             this.dataLoading = true;
             if(!_.isUndefined(this.leaderboard.$destroy)) {
@@ -36,7 +54,6 @@
             }
 
             this.leaderboardRef.$destroy();
-            this.usersRef.$destroy();
 
             this.leaderboard = [];
             this.leaderboardRef = [];
@@ -103,6 +120,14 @@
         	}, () => {
 	            this.users.$remove(user);
         	});
+        }
+
+        private getDetailsMessage(user: admin.User) {
+            return '<br>' +
+                '<p>Name: ' + user.name + '</p>' +
+                '<p>Email: ' + user.email + '</p>' +
+                '<p>Company: ' + user.company + '</p>' +
+                '<p>Phone: ' + user.phone + '</p>';
         }
 
         private getRemoveUserMessage(name: string, email: string, phone: string) {
