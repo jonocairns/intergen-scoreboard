@@ -3,7 +3,7 @@ module app.utils {
 
 	export interface IMandrillService {
 		send(to: string, from: string, message: string, subject: string): ng.IPromise<any>;
-		sms(toNumber: string, message: string): void;
+		sms(toNumber: string, message: string): ng.IPromise<any>;
 	}
 
 	class MandrillService implements IMandrillService {
@@ -42,17 +42,17 @@ module app.utils {
 			});
 		}
 
-		public sms(toNumber: string, message: string): void {
+		public sms(toNumber: string, message: string): ng.IPromise<any> {
 			var authData = btoa(this.twilio.value);
 
-			this.$http({
+			return this.$http({
 				method: 'POST',
 			   url: 'https://api.twilio.com/2010-04-01/Accounts/ACd5a34d0b373349656fb2e42c1ae0a4e7/Messages.json',
 			   data: $.param({Body: message, To: toNumber, From: '+16175443729'}),
 			   headers: {'Content-Type': 'application/x-www-form-urlencoded',
 		   				'Authorization': 'Basic ' + authData
 					}
-			})
+			});
 
 		}
 	}

@@ -2,6 +2,7 @@ module app.utils {
 	'use strict';
 
 	export interface IToastService {
+		toast(message: string, duration?: number): void;
 	}
 
 	class ToastService implements IToastService {
@@ -19,7 +20,7 @@ module app.utils {
 			}
 		}
 	}
-	
+
 	angular
 		.module('app.utils')
 		.service('toastService', ToastService);

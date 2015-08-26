@@ -13,7 +13,9 @@
         public leaderboardRef: any;
 
         /* @ngInject */
-        constructor(private leaderboardService: services.ILeaderboardService, private userService: services.IUserService, private mandrillService: utils.IMandrillService) {
+        constructor(private leaderboardService: services.ILeaderboardService,
+            private userService: services.IUserService,
+            private mandrillService: utils.IMandrillService, private toastService: utils.IToastService) {
             this.selectedDay = moment().format('dddd');
 
             this.leaderboard = leaderboardService.getByDay(this.selectedDay);
@@ -77,7 +79,27 @@
                 return;
             }
 
-            this.mandrillService.sms(user.phone, 'u f0ken f0t m9?');
+            swal({
+                title: 'SMS Message',
+                text: 'Write a sms message to ' + user.name + ' with the number ' + user.phone,
+                type: 'input',
+                showCancelButton: true,
+                closeOnConfirm: true,
+                animation: 'slide-from-top',
+                inputPlaceholder: 'Write a message here...' },
+                (inputValue: any) => {
+                    if (inputValue === false) {
+                        return false;
+                    }
+                    if (inputValue === '') {
+                        swal.showInputError('You need to write something!');
+                        return false
+                    }
+                    this.mandrillService.sms(user.phone, inputValue).then(() => {
+                        this.toastService.toast('SMS successfully sent to ' + user.name);
+                    });
+                    return true;
+                });
         }
 
         public message(entryId: string) {
@@ -90,7 +112,27 @@
                 return;
             }
 
-            this.mandrillService.send(user.email, 'ignite@intergen.co.nz', 'This is a message!', 'Message subject');
+            swal({
+                title: 'Email',
+                text: 'Write a email message to ' + user.name + ' with the email ' + user.email,
+                type: 'input',
+                showCancelButton: true,
+                closeOnConfirm: true,
+                animation: 'slide-from-top',
+                inputPlaceholder: 'Write a message here...' },
+                (inputValue: any) => {
+                    if (inputValue === false) {
+                        return false;
+                    }
+                    if (inputValue === '') {
+                        swal.showInputError('You need to write something!');
+                        return false;
+                    }
+                    this.mandrillService.send(user.email, 'ignite@intergen.co.nz', inputValue, 'Intergen Ignite').then(() => {
+                        this.toastService.toast('Email successfully sent to ' + user.name);
+                    });
+                    return true;
+                });
         }
 
         public searchLeaderboard(): void {
