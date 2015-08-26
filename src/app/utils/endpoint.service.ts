@@ -5,6 +5,7 @@ module app.utils {
 		getLeaderboard(): Firebase;
 		getUsers(): Firebase;
 		get(): Firebase;
+		getKeys(): Firebase;
 	}
 
 	class EndpointService implements IEndpointService {
@@ -24,11 +25,15 @@ module app.utils {
             return this.firebase.child('/users');
 		}
 
+		public getKeys(): Firebase {
+			return this.firebase.child('/keys');
+		}
+
 		public get(): Firebase {
 		    return this.firebase;
 		}
 	}
-	
+
 	angular
 		.module('app.utils')
 		.service('endpointService', EndpointService);

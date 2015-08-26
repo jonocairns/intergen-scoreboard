@@ -67,6 +67,19 @@
             this.searchLeaderboard();
         }
 
+        public sms(entryId: string) {
+            var user = _.find(this.usersRef, (user: any) => {
+                return user.id === entryId;
+            });
+
+            if (_.isUndefined(user)) {
+                swal('User not found!');
+                return;
+            }
+
+            this.mandrillService.sms(user.phone, 'u f0ken f0t m9?');
+        }
+
         public message(entryId: string) {
             var user = _.find(this.usersRef, (user: any) => {
                 return user.id === entryId;

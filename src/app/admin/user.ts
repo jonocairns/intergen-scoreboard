@@ -27,8 +27,7 @@ module app.admin {
 			return _.isString(this.name) && this.name.length > 0 &&
 				_.isString(this.company) && this.company.length > 0 &&
 				_.isString(this.email) && this.email.length > 0 &&
-				_.isString(this.email) && this.email.length > 0 &&
-                _.isString(this.image) && this.image.length > 0;
+				_.isString(this.email) && this.email.length > 0;
 		}
 	}
 }
