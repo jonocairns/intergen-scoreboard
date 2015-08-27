@@ -1,13 +1,13 @@
 <nav>
 	<div class="container" ng-controller="navbarController">
 		<div class="row">
-			<div class="col s12 m3">
+			<div class="col s12 m3 logo-wrap">
 				<a ui-sref="home" class="logo"><img src="images/logo.png" title="" style=""></a>
 			</div>
 
-			<div class="col s12 m9">
+			<div class="col s12 m9 nav-wrap">
 				<div class="right">
-					<ul>
+					<ul class="center">
 						<li><a ui-sref="home">Home</a></li>
 						<li><a ui-sref="leaderboard">Leaderboard</a></li>
 					    <li ng-if="isLoggedIn"><a ui-sref="admin">Admin</a></li>

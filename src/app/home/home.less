@@ -5,20 +5,27 @@
   color: rgba(255,255,255,.9);
 }
 
-.section.technologies {
-	padding-top: 50px;
-
-	.row {
-		h5.center {
-			margin-top: 40px;
-		}
-	}
+.section.register {
+	.media-phone({
+		padding-top: 0;
+	});
 }
 
 .hero {
 	h5.header {
 		line-height: 1.5em;
 	}
+
+	.media-phone({
+		h1 {
+			font-size: 2em;
+		}
+
+		h5.header {
+			margin-top: 0px;
+			font-size: 1.1em;
+		}
+	});
 }
 
 .prize-wrap {
@@ -26,5 +33,10 @@
 
 	img {
 		width: 500px;
+
+		.media-phone({
+			margin-top: 20px;
+			width: 100%;
+		})
 	}
 }
