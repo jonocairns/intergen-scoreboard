@@ -131,7 +131,6 @@
                     this.mandrillService.send(user.email, 'ignite@intergen.co.nz', inputValue, 'Intergen Ignite').then(() => {
                         this.toastService.toast('Email successfully sent to ' + user.name);
                     });
-                    return true;
                 });
         }
 
