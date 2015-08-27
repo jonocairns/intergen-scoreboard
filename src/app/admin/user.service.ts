@@ -34,7 +34,7 @@ module app.services {
             var deffered = this.$q.defer();
             ref.authWithPassword({ email: email, password: password }, (err: any, authData: FirebaseAuthData) => {
                 this.cachedUser = authData;
-                deffered.resolve(authData);
+                deffered.resolve({ authData: authData, error: err });
             });
             return deffered.promise;
         }
