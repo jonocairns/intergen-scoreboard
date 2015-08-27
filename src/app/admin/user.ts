@@ -21,7 +21,7 @@ module app.admin {
 				this.name === other.name &&
 				this.company === other.company &&
 				this.email === other.email &&
-				this.phone === other.phone&&
+				this.phone === other.phone &&
 		        this.image === other.image;
 		}
 

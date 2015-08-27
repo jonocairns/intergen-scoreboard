@@ -14,7 +14,7 @@ module app.admin {
 					this.recentEmail = emails.data;
 
 					_.each(this.recentEmail, (email: any) => {
-						mandrillService.getEmailContent(email._id).then((resp) => {
+						mandrillService.getEmailContent(email._id).then((resp: any) => {
 							email.content = resp.data.text;
 						});
 					});
@@ -25,8 +25,8 @@ module app.admin {
 					});
 				});
 
-				
-		}, 5000)
+
+			}, 5000);
 			
 		}
 
