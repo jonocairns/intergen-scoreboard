@@ -30,8 +30,8 @@
   					    <table class="bordered">
   					        <thead>
   					        <tr>
+                        <td></td>
   					            <td>Name</td>
-  					            <td>Email</td>
   					            <td>Score</td>
   					            <td>Day</td>
   					            <td>Actions</td>
@@ -40,6 +40,10 @@
 
   					        <tbody>
   					        <tr  dir-paginate="entry in vm.leaderboard | score | itemsPerPage: 5" pagination-Id="entry">
+                        <td >
+                              <input type="checkbox" id="{{entry.id}}" ng-model="entry.selected" />
+                              <label for="{{entry.id}}"></label>
+                        </td>
   					            <td ng-bind="entry.name"></td>
   					            <td ng-bind="entry.email"></td>
   					            <td ng-bind="entry.score"></td>
@@ -53,6 +57,10 @@
   					        </tr>
   					        </tbody>
   					    </table>
+                <button class="btn waves-effect intergen" ng-click="vm.bulkSms()">Bulk SMS</button>
+                <button class="btn waves-effect intergen" ng-click="vm.bulkEmail()">Bulk Email</button>
+                <button class="btn waves-effect intergen" ng-click="vm.bulkBoth()">Bulk Both</button>
+                <button class="btn waves-effect intergen" ng-click="vm.clear()">Clear</button>
                 <dir-pagination-controls pagination-id="entry" class="yellow"></dir-pagination-controls>
               </div>
                         <div class="clearfix"></div>

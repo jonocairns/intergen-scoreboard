@@ -1,6 +1,8 @@
 module app.admin {
 	'use strict';
 	export class User {
+		public selected: boolean = false;
+
 		constructor(public id: string, public name: string, public company: string,
 		public email: string, public phone: string, public image: string) {
 		}
