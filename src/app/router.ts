@@ -22,6 +22,18 @@ module app {
         	}
         });
 
+        $stateProvider.state('messages', {
+            url: '/messages',
+            templateUrl: 'app/admin/recent-messages.html',
+            controller: 'recentMessagesController',
+            controllerAs: 'vm',
+            onEnter: (userService: app.services.IUserService, $state: ng.ui.IStateService) => {
+                if(!userService.isLoggedIn()) {
+                    $state.go('home');
+                }
+            }
+        });
+
         $stateProvider.state('leaderboard', {
             url: '/leaderboard{day:(?:/[^/]+)?}',
             templateUrl: 'app/leaderboard/leaderboard.html',
