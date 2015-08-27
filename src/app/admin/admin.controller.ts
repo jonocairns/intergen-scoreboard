@@ -134,6 +134,89 @@
                 });
         }
 
+        public clear(): void {
+            _.each(this.leaderboard, (leaderboard: any) => {
+                leaderboard.selected = false;
+            });
+        }
+
+        public bulkAction(action: Function, secondAction?: Function) {
+            var usersToSms = [];
+            _.each(this.leaderboard, (leaderboard: any) => {
+                if(leaderboard.selected) {
+                    usersToSms.push(leaderboard);
+                }
+            });
+
+            if(usersToSms.length === 0) {
+                swal('No users selected! Use the checkboxes on the left side of the leaderboard grid.');
+                return;
+            }
+
+            swal({
+                title: 'Bulk Action',
+                text: 'Write a message to ' + usersToSms.length + ' selected people.',
+                type: 'input',
+                showCancelButton: true,
+                closeOnConfirm: true,
+                animation: 'slide-from-top',
+                inputPlaceholder: 'Write a message here...' },
+                (inputValue: any) => {
+                    if (inputValue === false) {
+                        return false;
+                    }
+                    if (inputValue === '') {
+                        swal.showInputError('You need to write something!');
+                        return false;
+                    }
+                    _.each(usersToSms, (leaderboard: any) => {
+                        var user = _.find(this.usersRef, (user: any) => {
+                            return user.id === leaderboard.id;
+                        });
+                        if (!_.isUndefined(user)) {
+                            action(user, inputValue);
+                            if (!_.isUndefined(secondAction)) {
+                                secondAction(user, inputValue);
+                            }
+                        }
+                    });
+                });
+        }
+
+        public bulkBoth() {
+            var smsAction = (user: admin.User, input: string) => {
+                this.mandrillService.sms(user.phone, input).then(() => {
+                    this.toastService.toast('SMS successfully sent to ' + user.name);
+                });
+            }
+
+            var emailAction = (user: admin.User, input: string) => {
+                this.mandrillService.send(user.email, 'ignite@intergen.co.nz', input, 'Intergen Ignite').then(() => {
+                    this.toastService.toast('Email successfully sent to ' + user.name);
+                });
+            }
+
+            this.bulkAction(smsAction, emailAction);
+        }
+
+        public bulkSms() {
+            var smsAction = (user: admin.User, input: string) => {
+                this.mandrillService.sms(user.phone, input).then(() => {
+                    this.toastService.toast('SMS successfully sent to ' + user.name);
+                });
+            }
+            this.bulkAction(smsAction);
+        }
+
+        public bulkEmail() {
+            var emailAction = (user: admin.User, input: string) => {
+                this.mandrillService.send(user.email, 'ignite@intergen.co.nz', input, 'Intergen Ignite').then(() => {
+                    this.toastService.toast('Email successfully sent to ' + user.name);
+                });
+            }
+            this.bulkAction(emailAction);
+        }
+
         public searchLeaderboard(): void {
             this.leaderboard = this.leaderboardRef;
 
