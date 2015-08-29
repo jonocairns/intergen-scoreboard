@@ -93,7 +93,7 @@
                     }
                     if (inputValue === '') {
                         swal.showInputError('You need to write something!');
-                        return false
+                        return false;
                     }
                     this.mandrillService.sms(user.phone, inputValue).then(() => {
                         this.toastService.toast('SMS successfully sent to ' + user.name);
@@ -188,13 +188,13 @@
                 this.mandrillService.sms(user.phone, input).then(() => {
                     this.toastService.toast('SMS successfully sent to ' + user.name);
                 });
-            }
+            };
 
             var emailAction = (user: admin.User, input: string) => {
                 this.mandrillService.send(user.email, 'ignite@intergen.co.nz', input, 'Intergen Ignite').then(() => {
                     this.toastService.toast('Email successfully sent to ' + user.name);
                 });
-            }
+            };
 
             this.bulkAction(smsAction, emailAction);
         }
@@ -204,7 +204,8 @@
                 this.mandrillService.sms(user.phone, input).then(() => {
                     this.toastService.toast('SMS successfully sent to ' + user.name);
                 });
-            }
+            };
+
             this.bulkAction(smsAction);
         }
 
@@ -213,14 +214,15 @@
                 this.mandrillService.send(user.email, 'ignite@intergen.co.nz', input, 'Intergen Ignite').then(() => {
                     this.toastService.toast('Email successfully sent to ' + user.name);
                 });
-            }
+            };
+            
             this.bulkAction(emailAction);
         }
 
         public searchLeaderboard(): void {
             this.leaderboard = this.leaderboardRef;
 
-            if(_.isUndefined(this.leaderboardSearchQuery) || this.leaderboardSearchQuery === ''){
+            if(_.isUndefined(this.leaderboardSearchQuery) || this.leaderboardSearchQuery === '') {
                 return;
             }
 
@@ -233,7 +235,7 @@
         public searchUsers(): void {
             this.users = this.usersRef;
 
-            if(_.isUndefined(this.userSearchQuery) || this.userSearchQuery === ''){
+            if(_.isUndefined(this.userSearchQuery) || this.userSearchQuery === '') {
                 return;
             }
 
