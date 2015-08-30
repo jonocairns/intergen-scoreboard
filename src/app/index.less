@@ -15,8 +15,12 @@ h1 {
 body {
 	font-size: 16px;
 	color: #111;
-	background: @halo-blue url(../images/background.jpg) no-repeat center center fixed;
+	background: @intergen-yellow url(../images/background.jpg) no-repeat center center fixed;
 	background-size: cover;
+
+	.media-phone({
+   		background-position: -400px;
+	});
 
 	&::before {
 		content: '';

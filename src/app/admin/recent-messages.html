@@ -1,0 +1,67 @@
+<div class="section" ng-show="vm.dataLoading">
+	<div class="container">
+		<div class="col s12 m4 center loading-spinner">
+			<div class="preloader-wrapper big active">
+			    <div class="spinner-layer spinner-yellow-only">
+			        <div class="circle-clipper left">
+			          	<div class="circle"></div>
+			        </div>
+			        <div class="gap-patch">
+			          	<div class="circle"></div>
+			        </div>
+			        <div class="circle-clipper right">
+			          	<div class="circle"></div>
+			        </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="section" ng-show="!vm.dataLoading">
+	<div class="container">
+	    <div class="row">
+	        <div class="col s12 m6">
+	        	<div class="card overflowable">
+		            <div class="card-content">
+		            	<span class="card-title black-text">Sent emails</span>
+		            	<div dir-paginate="email in vm.recentEmail | itemsPerPage: 3" pagination-Id="emails">
+		            		<p>To: {{ email.email }}</p>
+		            		<p>Sent at: {{ vm.format(email.ts) }}</p>
+		            		<p>Subject: {{ email.subject }}</p>
+		            		<p>Content: {{ email.content }}</p>
+		            		<p>State: {{ email.state }}</p>
+		            		<p>Times opened: {{ email.opens }}</p>
+		            		<p>Clicks: {{ email.clicks }}</p>
+							<p ng-if="email.opens_detail && email.opens_detail.location">Location opened from: {{ email.opens_detail.location }}</p>
+		            		<br />
+		            	</div>
+		            	<div>
+		            		<dir-pagination-controls pagination-id="emails" class="yellow"></dir-pagination-controls>
+		            	</div>
+		            	<div class="clearfix"></div>
+		            </div>
+	            </div>
+	        </div>
+			<div class="col s12 m6">
+				<div class="card overflowable">
+		        	<div class="card-content">
+		            	<span class="card-title black-text">Sent SMS</span>
+		            	<div dir-paginate="sms in vm.recentSms | itemsPerPage: 3" pagination-Id="sms" >
+		            		<p>To: {{ sms.to }}</p>
+		            		<p>Body: {{ sms.body }}</p>
+		            		<p>Sent at: {{ sms.date_sent }}</p>
+		            		<p>Status: {{ sms.status }}</p>
+		            		<p>Cost: {{ sms.price }}</p>
+		            		<br />
+		            	</div>
+		            	<div>
+		            		<dir-pagination-controls pagination-id="sms" class="yellow"></dir-pagination-controls>
+	            		</div>
+	            		<div class="clearfix"></div>
+		            </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
