@@ -5,15 +5,15 @@
 				<a ui-sref="home" class="logo"><img src="images/logo.png" title="" style=""></a>
 			</div>
 
-			<div class="col s12 m9 nav-wrap">
+			<div class="col s12 m9 nav-wrap hide-on-small-only">
 				<div class="right">
-					<ul class="center">
+					<ul class="desktop">
 						<li><a ui-sref="home">Home</a></li>
 						<li><a ui-sref="leaderboard">Leaderboard</a></li>
+                        <li ng-if="!isLoggedIn"><a ui-sref="login">Login</a></li>
+					    
 					    <li ng-if="isLoggedIn"><a ui-sref="admin">Admin</a></li>
 						<li ng-if="isLoggedIn"><a ui-sref="messages">Messages</a></li>
-
-                        <li ng-if="!isLoggedIn"><a ui-sref="login">Login</a></li>
                         <li ng-if="isLoggedIn"><a ui-sref="logout">Logout</a></li>
 					</ul>
 				</div>
@@ -21,3 +21,15 @@
 		</div>
 	</div>
 </nav>
+
+<div class="row mobile-nav hide-on-med-and-up">
+	<ul class="mobile">
+		<li><a ui-sref="home">Home</a></li>
+		<li><a ui-sref="leaderboard">Leaderboard</a></li>
+        <li ng-if="!isLoggedIn"><a ui-sref="login">Login</a></li>
+	    
+	    <li ng-if="isLoggedIn"><a ui-sref="admin">Admin</a></li>
+		<li ng-if="isLoggedIn"><a ui-sref="messages">Messages</a></li>
+        <li ng-if="isLoggedIn"><a ui-sref="logout">Logout</a></li>
+	</ul>
+</div>

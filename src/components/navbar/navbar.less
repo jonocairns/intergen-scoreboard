@@ -7,6 +7,7 @@ nav {
 
     .media-phone({
         padding-top: 20px;
+        margin-bottom: 20px;
     });
 
     .logo-wrap {
@@ -32,7 +33,7 @@ nav {
         });
     }
 
-    ul {
+    ul.desktop {
     	margin: 0; padding: 0;
         text-align: center;
         clear: left;
@@ -63,8 +64,32 @@ nav {
     		}
     	}
     }
-
     .media-full-screen({
     	display: none;
     });
+}
+
+.row.mobile-nav {
+	margin: 0;
+
+	ul.mobile {
+		margin: 0; padding: 0;
+		list-style: none;
+		text-align: center;
+
+		li {
+			display: inline-block;
+
+			a {
+				line-height: 64px;
+				padding: 0 15px;
+				display: block;
+				color: white;
+
+				&:hover {
+					color: @intergen-yellow;
+				}
+			}
+		}
+	}
 }
