@@ -11,59 +11,71 @@
 					<div class="card-content">
 						<span class="card-title">Leaderboard</span>
 
-              <select class="" ng-model="vm.selectedDay" ng-change="vm.changeDay()" watch material-select>
-                  <option  ng-repeat="value in vm.days">{{ value }}</option>
-              </select>
+              			<select ng-model="vm.selectedDay" ng-change="vm.changeDay()" watch material-select>
+                  			<option  ng-repeat="value in vm.days">{{ value }}</option>
+              			</select>
 
-              <div class="input-field">
-                  <input id="leaderboard-search" placeholder="Search for a score here..." type="text" class="validate" ng-model="vm.leaderboardSearchQuery" ng-change="vm.searchLeaderboard()" ng-model-options="{ debounce: 300 }"/>
-              </div>
+		              	<div class="input-field">
+		                  	<input id="leaderboard-search" placeholder="Search for a score here..." type="text" class="validate" ng-model="vm.leaderboardSearchQuery" ng-change="vm.searchLeaderboard()" ng-model-options="{ debounce: 300 }"/>
+		              	</div>
 
-              <div ng-show="vm.leaderboard.length === 0">
-          				<p>
-          					<span ng-show="!vm.dataLoading && vm.leaderboardSearchQuery.length === 0">There are currently no results for the selected day.</span>
-                            <span ng-show="!vm.dataLoading && vm.leaderboardSearchQuery.length !== 0">There are no results for the search '<span ng-bind="vm.leaderboardSearchQuery"></span>'. Try a broader search term.</span>
-          				</p>
-          		</div>
+		              	<div ng-show="vm.leaderboard.length === 0">
+		          			<p>
+		          				<span ng-show="!vm.dataLoading && vm.leaderboardSearchQuery.length === 0">There are currently no results for the selected day.</span>
+		                        <span ng-show="!vm.dataLoading && vm.leaderboardSearchQuery.length !== 0">There are no results for the search '<span ng-bind="vm.leaderboardSearchQuery"></span>'. Try a broader search term.</span>
+		          			</p>
+		          		</div>
 
-              <div ng-show="vm.leaderboard.length > 0">
-  					    <table class="bordered">
-  					        <thead>
-  					        <tr>
-                        <td></td>
-  					            <td>Name</td>
-  					            <td>Score</td>
-  					            <td>Day</td>
-  					            <td>Actions</td>
-  					        </tr>
-  					        </thead>
+              			<div ng-show="vm.leaderboard.length > 0">
+  					    	<table class="bordered">
+  					        	<thead>
+  					        		<tr>
+                        				<td></td>
+  					            		<td>Name</td>
+  					            		<td>Score</td>
+  					            		<td>Day</td>
+  					            		<td>Actions</td>
+  					        		</tr>
+  					        	</thead>
 
-  					        <tbody>
-  					        <tr  dir-paginate="entry in vm.leaderboard | score | itemsPerPage: 5" pagination-Id="entry">
-                        <td >
-                              <input type="checkbox" id="{{entry.id}}" ng-model="entry.selected" />
-                              <label for="{{entry.id}}"></label>
-                        </td>
-  					            <td ng-bind="entry.name"></td>
-  					            <td ng-bind="entry.email"></td>
-  					            <td ng-bind="entry.score"></td>
-  					            <td ng-bind="entry.conferenceDay"></td>
-  					            <td>
-                            <button class="btn waves-effect intergen" ng-click="vm.popDetail(entry.id)">Detail</button>
-                            <button class="btn waves-effect intergen" ng-click="vm.message(entry.id)">Email</button>
-                            <button class="btn waves-effect intergen" ng-click="vm.sms(entry.id)">SMS</button>
-                            <button class="btn waves-effect intergen" ng-click="vm.removeScore(entry)">Remove</button>
-                        </td>
-  					        </tr>
-  					        </tbody>
-  					    </table>
-                <button class="btn waves-effect intergen" ng-click="vm.bulkSms()">Bulk SMS</button>
-                <button class="btn waves-effect intergen" ng-click="vm.bulkEmail()">Bulk Email</button>
-                <button class="btn waves-effect intergen" ng-click="vm.bulkBoth()">Bulk Both</button>
-                <button class="btn waves-effect intergen" ng-click="vm.clear()">Clear</button>
-                <dir-pagination-controls pagination-id="entry" class="yellow"></dir-pagination-controls>
-              </div>
+  					        	<tbody>
+  					        		<tr  dir-paginate="entry in vm.leaderboard | score | itemsPerPage: 5" pagination-Id="entry">
+                        				<td >
+                              				<input type="checkbox" id="{{entry.id}}" ng-model="entry.selected" />
+                              				<label for="{{entry.id}}"></label>
+                        				</td>
+  					            		<td ng-bind="entry.name"></td>
+		  					            <td ng-bind="entry.score"></td>
+		  					            <td ng-bind="entry.conferenceDay"></td>
+  					            		<td width="40%">
+				                            <button class="btn waves-effect intergen right" ng-click="vm.removeScore(entry)">Remove</button>
+				                            <button class="btn waves-effect intergen right" ng-click="vm.sms(entry.id)">SMS</button>
+                            				<button class="btn waves-effect intergen right" ng-click="vm.message(entry.id)">Email</button>
+                            				<button class="btn waves-effect intergen right" ng-click="vm.popDetail(entry.id)">Detail</button>
+                        				</td>
+  					        		</tr>
+  					        	</tbody>
+  					    	</table>
+
+                			<dir-pagination-controls pagination-id="entry" class="yellow"></dir-pagination-controls>
+              			</div>
+
                         <div class="clearfix"></div>
+					</div>
+
+					<div class="card-action">
+						<div class="left">
+							<button class="btn waves-effect intergen" ng-click="vm.bulkSms()">Bulk SMS</button>
+			                <button class="btn waves-effect intergen" ng-click="vm.bulkEmail()">Bulk Email</button>
+			                <button class="btn waves-effect intergen" ng-click="vm.bulkBoth()">Bulk Both</button>
+			                <button class="btn waves-effect intergen" ng-click="vm.clear()">Clear</button>
+						</div>
+
+						<div class="right">
+							<a class="btn waves-effect intergen black-text" ui-sref="messages">Sent messages</a>
+						</div>
+
+						<div class="clearfix"></div>
 					</div>
 
 				</div>
@@ -76,42 +88,41 @@
 					<div class="card-content">
 						<span class="card-title">Users</span>
 
-            <div class="input-field">
-                <input id="user-search" placeholder="Search for a user here..." type="text" class="validate" ng-model="vm.userSearchQuery" ng-change="vm.searchUsers()" ng-model-options="{ debounce: 300 }" />
-            </div>
+			            <div class="input-field">
+			                <input id="user-search" placeholder="Search for a user here..." type="text" class="validate" ng-model="vm.userSearchQuery" ng-change="vm.searchUsers()" ng-model-options="{ debounce: 300 }" />
+			            </div>
 
-            <div ng-show="vm.users.length === 0">
-                <p>
-                  <span class="white-text">There are currently no users here. Go create some!</span>
-                </p>
-            </div>
+			            <div ng-show="vm.users.length === 0">
+			                <p>
+			                  <span class="white-text">There are currently no users here. Go create some!</span>
+			                </p>
+			            </div>
 
-            <div ng-show="vm.users.length > 0">
-              <table class="bordered">
-                  <thead>
-                  <tr>
-                      <td>Name</td>
-                      <td>Phone</td>
-                      <td>Email</td>
-                      <td>Company</td>
-                      <td>Actions</td>
-                  </tr>
-                  </thead>
+            			<div ng-show="vm.users.length > 0">
+              				<table class="bordered">
+                  				<thead>
+				                  	<tr>
+				                      	<td>Name</td>
+				                      	<td>Phone</td>
+				                      	<td>Email</td>
+				                      	<td>Company</td>
+				                      	<td>Actions</td>
+				                  	</tr>
+                  				</thead>
 
-                  <tbody>
-                  <tr dir-paginate="user in vm.users | itemsPerPage: 5" pagination-id="user">
-                      <td ng-bind="user.name"></td>
-                      <td ng-bind="user.phone">021111222333</td>
-                      <td ng-bind="user.email">jono@cairns.co.nz</td>
-                      <td ng-bind="user.company">Intergen</td>
-                      <td><button class="btn waves-effect intergen right" ng-click="vm.removeUser(user)">Remove</button></td>
-                  </tr>
-                  </tbody>
-              </table>
+                  				<tbody>
+                  					<tr dir-paginate="user in vm.users | itemsPerPage: 5" pagination-id="user">
+                      					<td ng-bind="user.name"></td>
+                      					<td ng-bind="user.phone">021111222333</td>
+                      					<td ng-bind="user.email">jono@cairns.co.nz</td>
+                      					<td ng-bind="user.company">Intergen</td>
+                      					<td><button class="btn waves-effect intergen right" ng-click="vm.removeUser(user)">Remove</button></td>
+                  					</tr>
+                  				</tbody>
+              				</table>
 
-              <dir-pagination-controls pagination-id="user"></dir-pagination-controls>
-            </div>
-
+              				<dir-pagination-controls pagination-id="user"></dir-pagination-controls>
+            			</div>
 
                         <div class="clearfix"></div>
 					</div>

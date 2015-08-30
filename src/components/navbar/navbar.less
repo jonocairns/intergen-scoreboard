@@ -35,35 +35,20 @@ nav {
 
     ul.desktop {
     	margin: 0; padding: 0;
-        text-align: center;
-        clear: left;
-        float: left;
-        position: relative;
-        left: 50%;
 
     	li {
     		text-transform: uppercase;
-            display: block;
-            position: relative;
-            float: left;
-            right: 50%;
             
 			&:hover {
 				background: none;
 			}
-
-            a {
-                .media-phone({
-                    padding: 0 6px;
-                    display: inline-block;
-                });
-            }
 
     		a:hover {
 				color: @intergen-yellow;
     		}
     	}
     }
+
     .media-full-screen({
     	display: none;
     });
@@ -85,6 +70,11 @@ nav {
 				padding: 0 15px;
 				display: block;
 				color: white;
+
+				.media-phone({
+                    padding: 0 6px;
+                    display: inline-block;
+                });
 
 				&:hover {
 					color: @intergen-yellow;
