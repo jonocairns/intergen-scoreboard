@@ -1,36 +1,46 @@
 <div class="card s12" ng-controller="registrationController as vm">
-	<form action="">
+	<ng-form name="registerForm">
 		<div class="card-content">
 			<span class="card-title black-text">Register</span>
 
 			<div class="input-field">
 				<i class="material-icons prefix">account_circle</i>
-				<input id="name" type="text" class="validate" ng-model="vm.user.name" />
+				<input id="name" type="text" required name="name" ng-model="vm.user.name" />
 				<label for="name">Full Name</label>
 			</div>
 
 			<div class="input-field">
 				<i class="material-icons prefix">email</i>
-				<input id="email" type="email" class="validate" ng-model="vm.user.email" />
+				<input id="email" type="email" name="email" required ng-model="vm.user.email" />
 				<label for="email">Email Address</label>
+
+				<div class="card-panel red darken-2 white-text form-error" ng-show="registerForm.email.$dirty && !registerForm.email.$valid">
+					<i class="material-icons left">error_outline</i>
+					<div>Please enter a valid email address.</div>
+				</div>
 			</div>
 
 			<div class="input-field">
 				<i class="material-icons prefix">stay_current_portrait</i>
-				<input id="phone" type="text" class="validate" ng-model="vm.user.phone" />
+				<input id="phone" name="phone" type="text" required ng-pattern="'[\+]642[0-9\]+'" ng-model="vm.user.phone" />
 				<label for="phone">Phone Number</label>
+
+				<div class="card-panel red darken-2 white-text form-error" ng-show="registerForm.phone.$dirty && !registerForm.phone.$valid">
+					<i class="material-icons left">error_outline</i>
+					<div>Please enter a valid phone number without any spaces. (EG: +6421234567)</div>
+				</div>
 			</div>
 
 			<div class="input-field">
 				<i class="material-icons prefix">class</i>
-				<input id="company" type="text" class="validate" ng-model="vm.user.company" />
+				<input id="company" name="company" type="text" ng-model="vm.user.company" />
 				<label for="company">Company</label>
 			</div>
 		</div>
 
 		<div class="card-action">
-			<button class="btn waves-effect waves-light right" ng-click="vm.register()" ng-disabled="vm.validate()" type="submit" name="action">Register<i class="material-icons right">send</i></button>
+			<button class="btn waves-effect waves-light right" ng-click="vm.register()" ng-disabled="vm.validate() || !registerForm.$valid" type="submit" name="action">Register<i class="material-icons right">send</i></button>
 			<div class="clearfix"></div>
 		</div>
-	</form>
+	</ng-form>
 </div>
