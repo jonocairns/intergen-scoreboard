@@ -79,6 +79,11 @@
                 return;
             }
 
+            if(_.isUndefined(user.phone)) {
+                swal('This user somehow doesnt have a phone number set wat!');
+                return;
+            }
+
             swal({
                 title: 'SMS Message',
                 text: 'Write a sms message to ' + user.name + ' with the number ' + user.phone,
@@ -273,26 +278,33 @@
         }
 
         private getDetailsMessage(user: admin.User) {
-            return '<br>' +
-                '<p>Name: ' + user.name + '</p>' +
-                '<p>Email: ' + user.email + '</p>' +
-                '<p>Company: ' + user.company + '</p>' +
-                '<p>Phone: ' + user.phone + '</p>';
+			var template = _.template('<br><p>Name: <%= user %></p><p>Email: <%= email %></p><p>Company: <%= company %></p><p>Phone: <%= phone %></p>');
+
+			return template({
+				'user': user.name,
+				'email': user.email,
+				'company': user.company,
+				'phone': user.phone
+			});
         }
 
         private getRemoveUserMessage(name: string, email: string, phone: string) {
-			return '<p>You are about to remove the following user:</p><br>' +
-				'<p>' + name + '</p>' +
-				'<p>' + email + '</p>' +
-				'<p>' + phone + '</p>';
+			var template = _.template('<p>You are about to remove the following user:</p><br><p><%= name %></p><p><%= email %></p><p><%= phone %></p>');
+
+			return template({
+				'name': name,
+				'email': email,
+				'phone': phone
+			});
         }
 
         private getRemoveScoreMessage(name: string, score: number): string {
-			return 'The entry for <span style="color:#F44336; font-weight: bold;">' +
-				name +
-				'</span> with score <span style="color:#F44336; font-weight: bold;">' +
-				score +
-				'</span> will be permanently deleted.';
+			var template = _.template('The entry for <span style="color:#F44336; font-weight: bold;"><%= name %></span> with score <span style="color:#F44336; font-weight: bold;"><%= score %></span> will be permanently deleted.');
+
+			return template({
+				'name': name,
+				'score': score
+			});
         }
     }
 

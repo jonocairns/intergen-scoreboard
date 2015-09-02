@@ -4,7 +4,7 @@ module app.admin {
 	export class AddScoreController {
 		public inputName: string;
 		public score: string;
-        public users: Array<admin.User>;
+        public users: AngularFireArray;
         public user: admin.User = admin.User.empty();
         public autocompleteOptions: any;
         public results: Array<any>;
@@ -20,9 +20,7 @@ module app.admin {
 				on_select: this.select.bind(this)
 			};
 
-			this.userService.get().then((users: Array<admin.User>) => {
-				this.users = users;
-			});
+			this.users = this.userService.get();
 
 			this.selectedTime = new Date();
 		}

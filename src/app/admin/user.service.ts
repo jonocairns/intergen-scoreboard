@@ -7,7 +7,7 @@ module app.services {
         logout(): void;
         save(user: app.admin.User, successAction: Function): void;
         login(email: string, password: string): ng.IPromise<FirebaseAuthData>;
-        get(): ng.IPromise<Array<admin.User>>;
+        get(): AngularFireArray;
         getReference(): AngularFireArray;
         loginProvider(provider: string): ng.IPromise<FirebaseAuthData>;
     }
@@ -49,18 +49,9 @@ module app.services {
             return !!ref.getAuth();
         }
 
-        public get(): ng.IPromise<Array<admin.User>> {
+        public get(): AngularFireArray {
             var ref = this.endpointService.getUsers();
-
-            var deffered = this.$q.defer();
-            ref.once('value', (data: any) => {
-                var users = [];
-                _.each(data.val(), (userDto: any) => {
-                    users.push(new admin.User(userDto.id, userDto.name, userDto.company, userDto.email, userDto.phone, userDto.image));
-                });
-                deffered.resolve(users);
-            });
-            return deffered.promise;
+            return this.$firebaseArray(ref);
         }
 
         public loginProvider(provider: string): ng.IPromise<FirebaseAuthData> {

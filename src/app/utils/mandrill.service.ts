@@ -71,7 +71,10 @@ module app.utils {
 
 		public sms(toNumber: string, message: string): ng.IPromise<any> {
 			var authData = btoa(this.twilio.value);
-
+			toNumber = toNumber.replace(' ', '');
+			if(toNumber.indexOf('0') === 0) {
+				toNumber = '+64' + toNumber.substring((1));
+			}
 			return this.$http({
 				method: 'POST',
 			   url: 'https://api.twilio.com/2010-04-01/Accounts/ACd5a34d0b373349656fb2e42c1ae0a4e7/Messages.json',
@@ -80,7 +83,6 @@ module app.utils {
 		   				'Authorization': 'Basic ' + authData
 					}
 			});
-
 		}
 	}
 
