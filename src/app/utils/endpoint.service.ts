@@ -13,7 +13,10 @@ module app.utils {
 		private baseUrl: string = 'https://intergen-scoreboard.firebaseio.com';
         private firebase: Firebase;
 
-        constructor() {
+        constructor($location: ng.ILocationService) {
+        	if($location.host() === 'localhost') {
+				this.baseUrl = 'https://int-scoreboard-dev.firebaseio.com';
+        	}
             this.firebase = new Firebase(this.baseUrl);
         }
 
