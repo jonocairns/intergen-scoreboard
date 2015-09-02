@@ -1,11 +1,15 @@
 module app.admin {
 	'use strict';
 
+	export interface IRegistrationScope extends ng.IScope {
+		registerForm: ng.IFormController;
+	}
+
 	export class RegistrationController {
 		public user: User;
 
 		/* @ngInject */
-		constructor(private userService: app.services.IUserService) {
+		constructor(private userService: app.services.IUserService, private $scope: IRegistrationScope) {
 			this.clear();
 		}
 
@@ -16,6 +20,7 @@ module app.admin {
 			this.userService.save(this.user, () => {
 				swal('Successfully Registered!', '', 'success');
 				this.clear();
+				this.$scope.registerForm.$setPristine();
 			});
     }
 
