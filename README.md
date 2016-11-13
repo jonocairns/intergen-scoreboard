@@ -1,11 +1,23 @@
-# intergen-scoreboard
+# Intergen Leaderboard
 
-DEVs
+A simple scoreboard application with realtime updates. Initally designed for the Intergen booth at Ignite NZ. Users could sign up and play Halo, their score was reported and displayed on a leaderboard. Administrators could add/remove scores, text/email users who won things.
 
-get nodejs
+It's all built with angular/firebase (no backend). Using mandrill for txt/email. 
 
-npm install gulp bower -g
+![](img/home-ignite.png)
 
-npm install
+![](img/home-ignite-mobile.png)
 
-bower install
+![](img/leaderboard.png)
+
+![](img/admin-top.png)
+
+![](img/admin-bottom.png)
+
+# development
+
+- get nodejs
+- npm install gulp bower -g
+- npm install
+- bower install
+- gulp serve
